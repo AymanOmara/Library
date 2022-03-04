@@ -29,12 +29,12 @@ class WelcomeActivity : AppCompatActivity() {
         businessEnglishBtn?.setOnClickListener {
 
             majors = arrayListOf("Ayman English","Ayman English","Ayman English","Ayman English")
-            myIntent?.putStringArrayListExtra("key",majors)
+            myIntent?.putStringArrayListExtra("majors",majors)
             startActivity(myIntent)
         }
         businessArabicBtn?.setOnClickListener {
             majors = arrayListOf("Ayman Arabic","Ayman Arabic","Ayman Arabic","Ayman Arabic")
-            myIntent?.putStringArrayListExtra("key",majors)
+            myIntent?.putStringArrayListExtra("majors",majors)
             startActivity(myIntent)
         }
     }
