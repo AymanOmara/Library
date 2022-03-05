@@ -28,14 +28,15 @@ class WelcomeActivity : AppCompatActivity() {
     fun setUpOnClickAction() {
         businessEnglishBtn?.setOnClickListener {
 
-            majors = arrayListOf("Ayman English","Ayman English","Ayman English","Ayman English")
+            majors = arrayListOf("Omnia English","Omnia English","Omnia English","Omnia English")
             myIntent?.putStringArrayListExtra("majors",majors)
             startActivity(myIntent)
         }
         businessArabicBtn?.setOnClickListener {
-            majors = arrayListOf("Ayman Arabic","Ayman Arabic","Ayman Arabic","Ayman Arabic")
+            majors = arrayListOf("Hadder Arabic","Hadder Arabic","Hadder Arabic","Hadder Arabic")
             myIntent?.putStringArrayListExtra("majors",majors)
             startActivity(myIntent)
         }
+
     }
 }
