@@ -21,12 +21,16 @@ class MajorsActivity : AppCompatActivity() {
         majorsArray =  incomingIntent?.getStringArrayListExtra("majors")
         Toast.makeText(this,"${majorsArray?.size} hi",Toast.LENGTH_LONG).show()
         val recyclerView :RecyclerView = findViewById(R.id.majorRecyclerView)
-        adapter = MajorAdapter(majorsArray!!)
+        adapter = MajorAdapter(majorsArray!!,{position -> onListItemClick(position) })
+
 
         val layoutManager = LinearLayoutManager(applicationContext)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
         adapter.notifyDataSetChanged()
 
+    }
+    private fun onListItemClick(position: Int) {
+        Toast.makeText(this, majorsArray?.get(position), Toast.LENGTH_SHORT).show()
     }
 }
