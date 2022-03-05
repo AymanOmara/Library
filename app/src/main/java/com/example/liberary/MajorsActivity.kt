@@ -3,9 +3,9 @@ package com.example.liberary
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+
 import android.widget.Toast
-import androidx.recyclerview.widget.DefaultItemAnimator
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -32,5 +32,7 @@ class MajorsActivity : AppCompatActivity() {
     }
     private fun onListItemClick(position: Int) {
         Toast.makeText(this, majorsArray?.get(position), Toast.LENGTH_SHORT).show()
+        val myIntent = Intent(this,HomeActivity::class.java)
+        startActivity(myIntent)
     }
 }
