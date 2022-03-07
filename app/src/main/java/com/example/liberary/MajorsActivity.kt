@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class MajorsActivity : AppCompatActivity() {
-    var incomingIntent: Intent? = null
+    private var incomingIntent: Intent? = null
     var majorsArray:ArrayList<String>? = null
     private lateinit var adapter: MajorAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
