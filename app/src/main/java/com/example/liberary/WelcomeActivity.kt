@@ -27,16 +27,15 @@ class WelcomeActivity : AppCompatActivity() {
     }
     fun setUpOnClickAction() {
         businessEnglishBtn?.setOnClickListener {
-            var courseArrayList:ArrayList<Course> =  arrayListOf(Course("machine learning", "info 401", "hello from description", "4", "my refrence"))
+            var courseArrayList:ArrayList<Course> =  arrayListOf(Course("machine learning", "info 401", "hello from description", "4", "my refrence","pre"),Course("stat401","stat401","hello from my descroption","my refrence ","l"," 401"))
             majors = arrayListOf(Major("Information systems", courseArrayList))
             val args = Bundle()
+
             args.putSerializable("ARRAYLIST", majors)
             myIntent?.putExtra("BUNDLE",args)
-            /*
-                    myArgs.putSerializable("courses", majorsArray?.get(position)?.courses)
-        Toast.makeText(this,"${majorsArray?.get(0)?.courses?.get(0)?.courseCode} on click action",Toast.LENGTH_LONG).show()
-        myIntent?.putExtra("coursesBUNDLE", myArgs)
-             */
+
+
+
             startActivity(myIntent)
         }
         businessArabicBtn?.setOnClickListener {

@@ -21,7 +21,6 @@ class MajorsActivity : AppCompatActivity() {
         val args = incomingIntent?.getBundleExtra("BUNDLE")
         majorsArray = args?.get("ARRAYLIST") as ArrayList<Major>?
 
-        
         val recyclerView :RecyclerView = findViewById(R.id.majorRecyclerView)
         adapter = MajorAdapter(majorsArray!!) { position -> onListItemClick(position) }
 

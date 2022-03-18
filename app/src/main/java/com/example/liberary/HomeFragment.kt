@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,15 +32,14 @@ class HomeFragment : Fragment() {
             }
             override fun onQueryTextChange(newText: String): Boolean {
                 Log.d("search",newText)
-                //Toast.makeText(this.context,newText,Toast.LENGTH_SHORT).show()
-                //Toast.makeText(this@HomeFragment,newText,)
+
                 filter(newText)
                 return true
             }})
         val recyclerView:RecyclerView =  view.findViewById(R.id.recyclerviewCourses)
-        adapter = CoursesAdapter(courses!!,{
-
-        })
+        adapter = CoursesAdapter(courses!!) {
+            getPressesdItemIndex(it)
+        }
         val layoutManager = LinearLayoutManager(this.context)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
@@ -55,9 +54,10 @@ class HomeFragment : Fragment() {
             }
 
         }
-
-        ///Log.d("search countrt","${filterdCourses.size}")
         adapter.filterCourses(filterdCourses)
+
+    }
+    fun getPressesdItemIndex(index:Int){
 
     }
 

@@ -20,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
 
         courses = intent.getSerializableExtra("coursesBUNDLE") as ArrayList<Course>?
 
-        //Toast.makeText(this,"${courses?.size}hello",Toast.LENGTH_LONG).show()
+
         bottomNavigation.setOnClickMenuListener {
             when (it.id){
                 0 -> {
