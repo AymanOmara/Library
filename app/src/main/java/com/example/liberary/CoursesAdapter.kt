@@ -35,5 +35,9 @@ class CoursesAdapter(private var itemList: ArrayList<Course>, private val onItem
     override fun getItemCount(): Int {
         return  itemList.size
     }
+    fun filterCourses(list:ArrayList<Course>){
+        this.itemList = list
+        notifyDataSetChanged()
+    }
 
 }
