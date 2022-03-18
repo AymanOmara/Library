@@ -3,12 +3,11 @@ package com.example.liberary
 import  android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 
 import androidx.recyclerview.widget.RecyclerView
 
-class MajorAdapter(private var itemList:ArrayList<String>,private val onItemClicked: (position: Int) -> Unit): RecyclerView.Adapter<MajorAdapter.MyViewHolder>() {
+class MajorAdapter(private var itemList: ArrayList<Major>, private val onItemClicked: (position: Int) -> Unit): RecyclerView.Adapter<MajorAdapter.MyViewHolder>() {
 
     class MyViewHolder(view: View, private val onItemClicked: (position: Int) -> Unit):RecyclerView.ViewHolder(view),View.OnClickListener{
         var itemTextView: TextView = view.findViewById(R.id.majorName)
@@ -30,7 +29,7 @@ class MajorAdapter(private var itemList:ArrayList<String>,private val onItemClic
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
     val item = itemList[position]
-        holder.itemTextView.text = item
+        holder.itemTextView.text = item.majorName
 
     }
 

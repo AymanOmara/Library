@@ -8,6 +8,8 @@ import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        var courses:ArrayList<Course>? = null
+        val bundle = Bundle()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -15,18 +17,28 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigation.add(MeowBottomNavigation.Model(0, R.drawable.homeicon))
         bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.favoriteicon))
 
+
+        courses = intent.getSerializableExtra("coursesBUNDLE") as ArrayList<Course>?
+
+        //Toast.makeText(this,"${courses?.size}hello",Toast.LENGTH_LONG).show()
         bottomNavigation.setOnClickMenuListener {
             when (it.id){
                 0 -> {
+                    val homeFragment = HomeFragment()
+                    bundle.putSerializable("ayman",courses)
+                    homeFragment.arguments = bundle
                     replaceFragment(HomeFragment())
                 }
-                1-> {
+                1 -> {
                     replaceFragment(FavoriteFragment())
                 }
             }
 
         }
-        replaceFragment(HomeFragment())
+        val homeFragment = HomeFragment()
+        bundle.putSerializable("ayman",courses)
+        homeFragment.arguments = bundle
+        replaceFragment(homeFragment)
 
 
     }

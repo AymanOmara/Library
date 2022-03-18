@@ -12,16 +12,18 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MajorsActivity : AppCompatActivity() {
     private var incomingIntent: Intent? = null
-    var majorsArray:ArrayList<String>? = null
+    var majorsArray:ArrayList<Major>? = null
     private lateinit var adapter: MajorAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_majors)
         incomingIntent = intent
-        majorsArray =  incomingIntent?.getStringArrayListExtra("majors")
-        Toast.makeText(this,"${majorsArray?.size} hi",Toast.LENGTH_LONG).show()
+        val args = incomingIntent?.getBundleExtra("BUNDLE")
+        majorsArray = args?.get("ARRAYLIST") as ArrayList<Major>?
+
+        
         val recyclerView :RecyclerView = findViewById(R.id.majorRecyclerView)
-        adapter = MajorAdapter(majorsArray!!,{position -> onListItemClick(position) })
+        adapter = MajorAdapter(majorsArray!!) { position -> onListItemClick(position) }
 
 
         val layoutManager = LinearLayoutManager(applicationContext)
@@ -31,8 +33,10 @@ class MajorsActivity : AppCompatActivity() {
 
     }
     private fun onListItemClick(position: Int) {
-        Toast.makeText(this, majorsArray?.get(position), Toast.LENGTH_SHORT).show()
+
         val myIntent = Intent(this,HomeActivity::class.java)
+
+        myIntent?.putExtra("coursesBUNDLE", majorsArray?.get(0)?.courses)
         startActivity(myIntent)
     }
 }
