@@ -25,15 +25,15 @@ class HomeActivity : AppCompatActivity() {
             when (it.id){
                 0 -> {
                     val homeFragment = HomeFragment()
+                    courses = intent.getSerializableExtra("coursesBUNDLE") as ArrayList<Course>?
                     bundle.putSerializable("ayman",courses)
                     homeFragment.arguments = bundle
-                    replaceFragment(HomeFragment())
+                    replaceFragment(homeFragment)
                 }
                 1 -> {
                     replaceFragment(FavoriteFragment())
                 }
             }
-
         }
         val homeFragment = HomeFragment()
         bundle.putSerializable("ayman",courses)
