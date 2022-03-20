@@ -1,4 +1,4 @@
-package com.example.liberary
+package com.example.liberary.View.Fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -6,10 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.liberary.Course
+import com.example.liberary.CoursesAdapter
+import com.example.liberary.R
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -31,8 +35,6 @@ class HomeFragment : Fragment() {
                 return false
             }
             override fun onQueryTextChange(newText: String): Boolean {
-                Log.d("search",newText)
-
                 filter(newText)
                 return true
             }})
@@ -58,7 +60,7 @@ class HomeFragment : Fragment() {
 
     }
     fun getPressesdItemIndex(index:Int){
-
+        Toast.makeText(activity?.applicationContext, courses?.get(index)?.courseCode,Toast.LENGTH_SHORT).show()
     }
 
 

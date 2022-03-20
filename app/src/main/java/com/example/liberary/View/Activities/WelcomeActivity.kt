@@ -1,9 +1,13 @@
-package com.example.liberary
+package com.example.liberary.View.Activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.liberary.Course
+import com.example.liberary.Major
+import com.example.liberary.R
+import com.example.liberary.constants.Constants
 
 class WelcomeActivity : AppCompatActivity() {
     private var businessEnglishBtn : Button? = null
@@ -27,20 +31,16 @@ class WelcomeActivity : AppCompatActivity() {
     }
     fun setUpOnClickAction() {
         businessEnglishBtn?.setOnClickListener {
-            var courseArrayList:ArrayList<Course> =  arrayListOf(Course("machine learning", "info 401", "hello from description", "4", "my refrence","pre"),Course("stat401","stat401","hello from my descroption","my refrence ","l"," 401"))
+            var courseArrayList:ArrayList<Course> =  arrayListOf(Course("machine learning", "info 401", "hello from description", "4", "my refrence","pre"), Course("stat401","stat401","hello from my descroption","my refrence ","l"," 401"))
             majors = arrayListOf(Major("Information systems", courseArrayList))
-            val args = Bundle()
-
-            args.putSerializable("ARRAYLIST", majors)
-            myIntent?.putExtra("BUNDLE",args)
+            myIntent?.putExtra(Constants.major,majors)
 
 
 
             startActivity(myIntent)
         }
         businessArabicBtn?.setOnClickListener {
-            //majors = arrayListOf("حمادة بالجنزبيل","حمادة بالجنزبيل","حمادة بالجنزبيل","حمادة بالجنزبيل")
-            //myIntent?.putStringArrayListExtra("majors",majors)
+
             startActivity(myIntent)
         }
 

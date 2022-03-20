@@ -1,9 +1,10 @@
-package com.example.liberary
+package com.example.liberary.View.Activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.example.liberary.R
 
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
 
-        myIntent = Intent(this,WelcomeActivity::class.java)
+        myIntent = Intent(this, WelcomeActivity::class.java)
         Handler().postDelayed({
             startActivity(myIntent)
             finish()

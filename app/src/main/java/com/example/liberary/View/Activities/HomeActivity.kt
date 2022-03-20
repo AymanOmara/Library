@@ -1,9 +1,14 @@
-package com.example.liberary
+package com.example.liberary.View.Activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
+import com.example.liberary.Course
+import com.example.liberary.View.Fragment.FavoriteFragment
+import com.example.liberary.View.Fragment.HomeFragment
+import com.example.liberary.R
+import com.example.liberary.constants.Constants
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -18,14 +23,14 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.favoriteicon))
 
 
-        courses = intent.getSerializableExtra("coursesBUNDLE") as ArrayList<Course>?
+        courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>?
 
 
         bottomNavigation.setOnClickMenuListener {
             when (it.id){
                 0 -> {
                     val homeFragment = HomeFragment()
-                    courses = intent.getSerializableExtra("coursesBUNDLE") as ArrayList<Course>?
+                    courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>?
                     bundle.putSerializable("ayman",courses)
                     homeFragment.arguments = bundle
                     replaceFragment(homeFragment)

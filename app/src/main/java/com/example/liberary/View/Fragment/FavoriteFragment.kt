@@ -1,10 +1,11 @@
-package com.example.liberary
+package com.example.liberary.View.Fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.liberary.R
 
 
 class FavoriteFragment : Fragment() {

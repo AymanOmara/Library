@@ -1,26 +1,26 @@
-package com.example.liberary
+package com.example.liberary.View.Activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-import android.widget.Toast
-
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.liberary.Major
+import com.example.liberary.MajorAdapter
+import com.example.liberary.R
+import com.example.liberary.constants.Constants
 
 
 class MajorsActivity : AppCompatActivity() {
-    private var incomingIntent: Intent? = null
     var majorsArray:ArrayList<Major>? = null
     private lateinit var adapter: MajorAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_majors)
-        incomingIntent = intent
-        val args = incomingIntent?.getBundleExtra("BUNDLE")
-        majorsArray = args?.get("ARRAYLIST") as ArrayList<Major>?
 
+
+        majorsArray = intent.getSerializableExtra(Constants.major)  as ArrayList<Major>?
         val recyclerView :RecyclerView = findViewById(R.id.majorRecyclerView)
         adapter = MajorAdapter(majorsArray!!) { position -> onListItemClick(position) }
 
@@ -33,9 +33,9 @@ class MajorsActivity : AppCompatActivity() {
     }
     private fun onListItemClick(position: Int) {
 
-        val myIntent = Intent(this,HomeActivity::class.java)
+        val myIntent = Intent(this, HomeActivity::class.java)
 
-        myIntent?.putExtra("coursesBUNDLE", majorsArray?.get(0)?.courses)
+        myIntent?.putExtra(Constants.courses, majorsArray?.get(0)?.courses)
         startActivity(myIntent)
     }
 }
