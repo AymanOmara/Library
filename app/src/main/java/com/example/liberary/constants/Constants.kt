@@ -4,6 +4,7 @@ class Constants {
    companion object {
     val courses = "coursesBUNDLE"
        val major = "Majors"
+       val details = "details"
     }
 
 }

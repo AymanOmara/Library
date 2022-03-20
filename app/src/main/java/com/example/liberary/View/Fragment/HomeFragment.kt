@@ -1,5 +1,6 @@
 package com.example.liberary.View.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,13 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.liberary.Course
 import com.example.liberary.CoursesAdapter
 import com.example.liberary.R
+import com.example.liberary.View.Activities.DetailsActivity
+import com.example.liberary.constants.Constants
+import com.google.android.material.internal.ContextUtils
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -61,6 +64,12 @@ class HomeFragment : Fragment() {
     }
     fun getPressesdItemIndex(index:Int){
         Toast.makeText(activity?.applicationContext, courses?.get(index)?.courseCode,Toast.LENGTH_SHORT).show()
+        courses?.get(index)?.let { moveToNewActivity(it) }
+    }
+    private fun moveToNewActivity(withCourse: Course) {
+        val i = Intent(activity, DetailsActivity::class.java)
+        i.putExtra(Constants.details,withCourse)
+        startActivity(i)
     }
 
 
