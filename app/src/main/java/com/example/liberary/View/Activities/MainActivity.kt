@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 //        LocalModel.write(Course("ayman","hello","hello","100","no","no"))
         //LocalModel.getAll()
         val localModel = LocalModel()
-        localModel
+        localModel.getAll()
         myIntent = Intent(this, WelcomeActivity::class.java)
         Handler().postDelayed({
             startActivity(myIntent)

@@ -1,13 +1,11 @@
 package com.example.liberary
 
 
-import android.util.Log
-
 import io.realm.*
-import io.realm.annotations.PrimaryKey
-import io.realm.query
+import io.realm.kotlin.where
 import java.io.Serializable
 import java.util.*
+
 
 data class Major(val majorName:String,val courses: ArrayList<Course>):Serializable{}
 
@@ -15,10 +13,14 @@ data class Course(val courseName:String,val courseCode:String,val courseDescript
 
 }
 class LocalModel{
-    private val realmConfiguration = RealmConfiguration.with(schema = setOf(Dog::class))
-    //private val realm = Realm.open(realmConfiguration)
+    //private val realm = Realm.init()
+    //private val realmConfig = RealmConfiguration.
+    //private val realmConfiguration = RealmConfiguration.with(schema = setOf(Dog::class))
+//    private val realm = Realm.open(realmConfiguration)
     fun write(course:Course){
+        val realm =  Realm.getDefaultInstance()
 
+        realm.where<Dog>().findAll()
         //realm.writeBlocking {
           //  copyToRealm(course)
         //}
@@ -28,7 +30,7 @@ class LocalModel{
         //Log.d("realm", realm.query<Course>().count().toString())
     }
 }
-class Dog: RealmObject {
-    @PrimaryKey
-    var name = ""
+ open class Dog: RealmObject() {
+    var name:String = ""
 }
+

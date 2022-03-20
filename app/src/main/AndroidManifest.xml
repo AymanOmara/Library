@@ -13,7 +13,9 @@
         <activity android:name=".View.Activities.HomeActivity" />
         <activity android:name=".View.Activities.MajorsActivity" />
         <activity android:name=".View.Activities.WelcomeActivity" />
-        <activity android:name=".View.Activities.MainActivity">
+        <activity android:name=".View.Activities.MainActivity"
+            android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

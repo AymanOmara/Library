@@ -1,10 +1,12 @@
 plugins {
-
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
-
+    id 'kotlin-kapt'
+    id 'realm-android'
 }
+apply plugin : 'realm-android'
+apply plugin : 'kotlin-kapt'
 android {
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
@@ -56,5 +58,5 @@ dependencies {
     // Meow Bottom navigation view
     implementation 'com.etebarian:meow-bottom-navigation:1.0.4'
 
-    implementation 'io.realm.kotlin:library-base:0.10.0'
+
 }

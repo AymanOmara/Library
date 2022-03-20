@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
     fun filter(text:String){
         var filterdCourses:ArrayList<Course> = ArrayList()
         for (i in courses!!) {
-            if (i.courseCode.toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT))) {
+            if (i.courseCode.lowercase().contains(text.lowercase())) {
                 filterdCourses?.add(i)
             }
 
