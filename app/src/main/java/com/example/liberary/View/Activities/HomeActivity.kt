@@ -10,14 +10,16 @@ import com.example.liberary.View.Fragment.HomeFragment
 import com.example.liberary.R
 import com.example.liberary.constants.Constants
 import kotlinx.android.synthetic.main.activity_home.*
+import java.util.*
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        var courses:ArrayList<Course>? = null
+        var courses: ArrayList<Course>? = null
         val bundle = Bundle()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
         bottomNavigation.show(0)
         bottomNavigation.add(MeowBottomNavigation.Model(0, R.drawable.homeicon))
         bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.favoriteicon))
