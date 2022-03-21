@@ -7,6 +7,7 @@ class Constants {
        val major = "Majors"
        val details = "details"
        val homeCourses = "homeCourses"
+       var favorites = "favorites"
     }
 
 }

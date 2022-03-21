@@ -38,7 +38,11 @@ class HomeActivity : AppCompatActivity() {
                     replaceFragment(homeFragment)
                 }
                 1 -> {
-                    replaceFragment(FavoriteFragment())
+                    val favoriteFragment = FavoriteFragment()
+                    courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>?
+                    bundle.putSerializable(Constants.favorites,courses)
+                    favoriteFragment.arguments = bundle
+                    replaceFragment(favoriteFragment)
                 }
             }
         }
