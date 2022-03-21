@@ -4,8 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.example.liberary.Course
-import com.example.liberary.LocalModel
+import com.example.liberary.LocalModel.LocalModel
 import com.example.liberary.R
 
 
@@ -15,10 +14,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-       // val localModel =  LocalModel
-//        LocalModel.write(Course("ayman","hello","hello","100","no","no"))
-        //LocalModel.getAll()
-        val localModel = LocalModel()
+        val localModel =  LocalModel()
+
         localModel.getAll()
         myIntent = Intent(this, WelcomeActivity::class.java)
         Handler().postDelayed({

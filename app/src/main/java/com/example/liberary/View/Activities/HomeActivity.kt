@@ -33,7 +33,7 @@ class HomeActivity : AppCompatActivity() {
                 0 -> {
                     val homeFragment = HomeFragment()
                     courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>?
-                    bundle.putSerializable("ayman",courses)
+                    bundle.putSerializable(Constants.homeCourses,courses)
                     homeFragment.arguments = bundle
                     replaceFragment(homeFragment)
                 }
@@ -43,7 +43,7 @@ class HomeActivity : AppCompatActivity() {
             }
         }
         val homeFragment = HomeFragment()
-        bundle.putSerializable("ayman",courses)
+        bundle.putSerializable(Constants.homeCourses,courses)
         homeFragment.arguments = bundle
         replaceFragment(homeFragment)
 

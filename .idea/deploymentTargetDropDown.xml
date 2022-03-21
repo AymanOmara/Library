@@ -6,12 +6,12 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="SERIAL_NUMBER" />
-            <value value="adb-fb648aa7-LMC9oj._adb-tls-connect._tcp." />
+            <type value="VIRTUAL_DEVICE_PATH" />
+            <value value="/Applications/Android Emulator.app/Contents/MacOS/aosp-master-arm64-v8a" />
           </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-03-20T14:43:55.775608Z" />
+    <timeTargetWasSelectedWithDropDown value="2022-03-21T19:24:02.221808Z" />
   </component>
 </project>

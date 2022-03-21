@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        courses = arguments?.get("ayman") as ArrayList<Course>
+        courses = arguments?.get(Constants.homeCourses) as ArrayList<Course>
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         searchBar = view.findViewById(R.id.searchView)
         searchBar?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

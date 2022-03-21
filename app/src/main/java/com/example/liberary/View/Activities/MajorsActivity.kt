@@ -24,9 +24,7 @@ class MajorsActivity : AppCompatActivity() {
         val recyclerView :RecyclerView = findViewById(R.id.majorRecyclerView)
         adapter = MajorAdapter(majorsArray!!) { position -> onListItemClick(position) }
 
-
-        val layoutManager = LinearLayoutManager(applicationContext)
-        recyclerView.layoutManager = layoutManager
+        recyclerView.layoutManager = LinearLayoutManager(applicationContext)
         recyclerView.adapter = adapter
         adapter.notifyDataSetChanged()
 
@@ -35,7 +33,7 @@ class MajorsActivity : AppCompatActivity() {
 
         val myIntent = Intent(this, HomeActivity::class.java)
 
-        myIntent?.putExtra(Constants.courses, majorsArray?.get(0)?.courses)
+        myIntent?.putExtra(Constants.courses, majorsArray?.get(position)?.courses)
         startActivity(myIntent)
     }
 }
