@@ -1,4 +1,4 @@
-package com.example.liberary
+package com.example.liberary.Adapters
 
 import  android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 import androidx.recyclerview.widget.RecyclerView
+import com.example.liberary.Major
+import com.example.liberary.R
 
 class MajorAdapter(private var itemList: ArrayList<Major>, private val onItemClicked: (position: Int) -> Unit): RecyclerView.Adapter<MajorAdapter.MyViewHolder>() {
 

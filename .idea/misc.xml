@@ -5,6 +5,10 @@
       <map>
         <entry key="app/src/main/res/drawable/favoriteicon.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/homeicon.xml" value="0.1965" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.14402173913043478" />
+        <entry key="app/src/main/res/layout/courserecyclerviewitem.xml" value="0.48456891930621604" />
+        <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.14402173913043478" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.15806159420289856" />
       </map>
     </option>
   </component>

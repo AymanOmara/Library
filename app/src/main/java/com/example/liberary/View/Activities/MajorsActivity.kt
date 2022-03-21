@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.liberary.Major
-import com.example.liberary.MajorAdapter
+import com.example.liberary.Adapters.MajorAdapter
 import com.example.liberary.R
 import com.example.liberary.constants.Constants
 

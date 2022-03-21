@@ -50,7 +50,7 @@ class HomeActivity : AppCompatActivity() {
 
     }
     private fun replaceFragment(fragment: Fragment){
-    val fragmentManager = supportFragmentManager
+        val fragmentManager = supportFragmentManager
         val fragmentTransAction = fragmentManager.beginTransaction()
         fragmentTransAction.replace(R.id.framelayout, fragment)
         fragmentTransAction.commit()

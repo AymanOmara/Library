@@ -14,9 +14,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-        val localModel =  LocalModel()
+//        val localModel =  LocalModel
 
-        localModel.getAll()
+//        localModel.getAll()
         myIntent = Intent(this, WelcomeActivity::class.java)
         Handler().postDelayed({
             startActivity(myIntent)

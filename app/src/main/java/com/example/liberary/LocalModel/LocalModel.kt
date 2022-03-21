@@ -1,22 +1,39 @@
 package com.example.liberary.LocalModel
 
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.example.liberary.Course
 import io.realm.Realm
-import io.realm.kotlin.where
+import kotlinx.coroutines.flow.Flow
 
-class LocalModel{
-    //private val realm = Realm.init()
+
+object LocalModel{
+    var context: AppCompatActivity? = null
+
 
     fun write(course: Course){
-        val realm =  Realm.getDefaultInstance()
+        Realm.init(context)
+        val realm = Realm.getDefaultInstance()
+        var isBefore =  realm.where(Course::class.java).findAll().find { it.courseCode == course.courseCode }
+        if (isBefore == null){
+            realm.beginTransaction()
+            realm.copyToRealm(course)
+            realm.commitTransaction()
+        }else{
+            Log.d("error","error")
+        }
 
-        //realm.where<Course>().findAll()
-        //realm.writeBlocking {
-        //  copyToRealm(course)
-        //}
+
+
     }
     fun getAll(){
-        //realm.query<Course>().find()
-        //Log.d("realm", realm.query<Course>().count().toString())
+        //: Flow<ArrayList<Course>>
+        Realm.init(context)
+        val realm = Realm.getDefaultInstance()
+        var da =  realm.where(Course::class.java).findAll()
+        Log.d("realm data","${da.size}")
+
+       // return realm.where(Course::class.java).findAll()
     }
 }
+
