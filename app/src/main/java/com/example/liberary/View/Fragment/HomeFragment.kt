@@ -2,7 +2,6 @@ package com.example.liberary.View.Fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,10 +18,12 @@ import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
+    private var filterdCourses:ArrayList<Course> = ArrayList()
+
     private lateinit var adapter: CoursesAdapter
     private var searchBar:SearchView? = null
     var courses:ArrayList<Course>? = null
-
+    var isSearching = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,7 +39,8 @@ class HomeFragment : Fragment() {
                 return false
             }
             override fun onQueryTextChange(newText: String): Boolean {
-                Log.d("search",newText)
+                isSearching = !newText.isEmpty()
+
                 filter(newText)
                 return true
             }})
@@ -53,7 +55,7 @@ class HomeFragment : Fragment() {
         return view
     }
     fun filter(text:String){
-        var filterdCourses:ArrayList<Course> = ArrayList()
+    filterdCourses.clear()
         for (i in courses!!) {
             if (i.courseCode.lowercase().contains(text.lowercase())) {
                 filterdCourses?.add(i)
@@ -63,8 +65,11 @@ class HomeFragment : Fragment() {
 
     }
     private fun getPressesdItemIndex(index:Int){
-        moveToNewActivity(courses?.get(index)!!)
-        //courses?.get(index)?.let { moveToNewActivity(it) }
+        if (isSearching){
+            moveToNewActivity(filterdCourses?.get(index)!!)
+        }else{
+            moveToNewActivity(courses?.get(index)!!)
+        }
     }
     private fun moveToNewActivity(withCourse: Course) {
         val i = Intent(activity, DetailsActivity::class.java)

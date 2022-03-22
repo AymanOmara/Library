@@ -10,16 +10,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.liberary.Adapters.CoursesAdapter
 import com.example.liberary.Course
+import com.example.liberary.ViewModels.FavoriteViewModel
 import com.example.liberary.R
 import com.example.liberary.View.Activities.DetailsActivity
 import com.example.liberary.constants.Constants
+import kotlinx.coroutines.flow.onEach
 
 
 class FavoriteFragment : Fragment() {
+    var viewModel = FavoriteViewModel()
     private lateinit var adapter: CoursesAdapter
-    private var courses:ArrayList<Course>? = null
+    private var courses:ArrayList<Course>? = ArrayList()
 
-    override fun onCreateView(
+    override  fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -27,6 +30,11 @@ class FavoriteFragment : Fragment() {
         courses = arguments?.get(Constants.favorites) as ArrayList<Course>
 
         val recyclerView: RecyclerView =  view.findViewById(R.id.favoritesrv)
+        viewModel.getData().onEach { list ->
+            courses = list
+            adapter.notifyDataSetChanged()
+
+        }
         adapter = CoursesAdapter(courses!!) {
             getPressesdItemIndex(it)
         }
@@ -34,6 +42,7 @@ class FavoriteFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
         adapter.notifyDataSetChanged()
+
         return  view
     }
     private fun getPressesdItemIndex(index:Int){

@@ -9,4 +9,5 @@
     <string name="courseID">course ID</string>
     <string name="prerequest">prerequest</string>
     <string name="courseIntroduction">course Introduction</string>
+    <string name="addToFavorite">Add to favorite</string>
 </resources>

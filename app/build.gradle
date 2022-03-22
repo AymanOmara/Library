@@ -58,5 +58,6 @@ dependencies {
     // Meow Bottom navigation view
     implementation 'com.etebarian:meow-bottom-navigation:1.0.4'
 
-
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
 }
