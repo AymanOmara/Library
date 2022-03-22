@@ -8,6 +8,7 @@ import com.example.liberary.Course
 import com.example.liberary.View.Fragment.FavoriteFragment
 import com.example.liberary.View.Fragment.HomeFragment
 import com.example.liberary.R
+import com.example.liberary.View.Fragment.RecentOpenFragment
 import com.example.liberary.constants.Constants
 import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
@@ -23,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigation.show(0)
         bottomNavigation.add(MeowBottomNavigation.Model(0, R.drawable.homeicon))
         bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.favoriteicon))
-
+        bottomNavigation.add(MeowBottomNavigation.Model(2, R.drawable.recenticon))
 
         courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>?
 
@@ -43,6 +44,9 @@ class HomeActivity : AppCompatActivity() {
                     bundle.putSerializable(Constants.favorites,courses)
                     favoriteFragment.arguments = bundle
                     replaceFragment(favoriteFragment)
+                }
+                2 ->{
+                    replaceFragment(RecentOpenFragment())
                 }
             }
         }

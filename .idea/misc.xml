@@ -5,11 +5,13 @@
       <map>
         <entry key="app/src/main/res/drawable/favoriteicon.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/homeicon.xml" value="0.1965" />
+        <entry key="app/src/main/res/drawable/recenticon.xml" value="0.178" />
         <entry key="app/src/main/res/layout/activity_details.xml" value="0.334716796875" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.14402173913043478" />
         <entry key="app/src/main/res/layout/courserecyclerviewitem.xml" value="0.48456891930621604" />
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.14402173913043478" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.15806159420289856" />
+        <entry key="app/src/main/res/layout/fragment_recent_open.xml" value="0.16927083333333334" />
         <entry key="app/src/main/res/layout/majoritem.xml" value="0.4679856673530911" />
       </map>
     </option>

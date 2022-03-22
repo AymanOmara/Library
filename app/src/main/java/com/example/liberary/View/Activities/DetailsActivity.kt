@@ -33,18 +33,12 @@ class DetailsActivity : AppCompatActivity() {
         course = intent.getSerializableExtra(Constants.details) as Course
         bindDataToView()
         LocalModel.context = this
-        /*
 
-        LocalModel.write(course)
-        LocalModel.getAll()*/
         favorite.setOnClickListener {
             lifecycleScope.launch {
                 data()
             }
-
-           // LocalModel.write(course)
         }
-
     }
     private fun findViewByid(){
         courseName = findViewById(R.id.courseDetailsNameValue)
