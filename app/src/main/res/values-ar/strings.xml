@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="change_language">change language</string>
-    <string name="darkmode">DarkMode</string>
-    <string name="logout">logout</string>
-    <string name="open">open</string>
-    <string name="close">close</string>
-    <string name="addToFavorite">Add to favorite</string>
-</resources>

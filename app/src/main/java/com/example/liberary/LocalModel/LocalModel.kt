@@ -12,7 +12,7 @@ object LocalModel{
     var context: AppCompatActivity? = null
 
 
-    fun write(course: Course): Flow<Boolean>{
+   suspend fun write(course: Course): Flow<Boolean>{
         return flow {
             Realm.init(context)
             val realm = Realm.getDefaultInstance()

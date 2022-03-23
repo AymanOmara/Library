@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Liberary</string>
-    <string name="introduction">The library contains important information about the College of Business for all Majors and different levels.  Where the user can search for the major, then the course to know all details of the course and also know the reference of the course, which makes him familiar enough with the course.</string>
+    <string name="app_name">مكتبة</string>
+    <string name="introduction">تحتوي المكتبة على معلومات مهمة حول كلية إدارة الأعمال لجميع التخصصات والمستويات المختلفة. حيث يمكن للمستخدم البحث عن التخصص ، ثم الدورة لمعرفة كل تفاصيل الدورة وأيضًا معرفة مرجع الدورة ، مما يجعله على دراية كافية بالمقرر.</string>
     <string name="businessEnglishBtn">Business English</string>
     <string name="BusinessArabic">Business Arabic</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="courseDetailsName">Course Name:</string>
-    <string name="courseID">TextView</string>
-    <string name="prerequest">prerequest</string>
-    <string name="courseIntroduction">course Introduction</string>
+
+
+    <string name="courseDetailsName">اسم المادة:</string>
+    <string name="courseID">رمز المادة</string>
+    <string name="prerequest">المواد المعتمدة</string>
+    <string name="courseIntroduction">نبذه</string>
+
+
+
+    <string name="addToFavorite">اضافه الى المفضلة</string>
+    <string name="change_language">تغيير اللغة</string>
+    <string name="darkmode">الوضع الليلي</string>
+    <string name="logout">تسجيل خروج</string>
+    <string name="open">فتح</string>
+    <string name="close">غلق</string>
+
 </resources>

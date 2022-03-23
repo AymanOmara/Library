@@ -11,10 +11,8 @@ import java.util.*
 data class Major(val majorName:String,val courses: ArrayList<Course>):Serializable{}
 
 open class Course(): RealmObject(),Serializable{
-
+    var isRecent:Boolean = false
     var courseName:String = ""
-
-
     var courseCode:String = ""
     var courseDescription:String = ""
     var level:String = ""

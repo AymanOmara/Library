@@ -1,7 +1,6 @@
 package com.example.liberary.View.Activities
 
 
-import android.content.DialogInterface
 import android.os.Bundle
 
 import android.widget.Button
@@ -14,6 +13,7 @@ import com.example.liberary.LocalModel.LocalModel
 import com.example.liberary.R
 import com.example.liberary.ViewModels.AddViewModel
 import com.example.liberary.constants.Constants
+import kotlinx.coroutines.Dispatchers
 
 import kotlinx.coroutines.launch
 
@@ -35,10 +35,13 @@ class DetailsActivity : AppCompatActivity() {
         LocalModel.context = this
 
         favorite.setOnClickListener {
+
             lifecycleScope.launch {
                 data()
             }
-        }
+
+
+    }
     }
     private fun findViewByid(){
         courseName = findViewById(R.id.courseDetailsNameValue)

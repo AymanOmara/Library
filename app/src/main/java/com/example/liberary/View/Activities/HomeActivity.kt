@@ -27,7 +27,7 @@ class HomeActivity : AppCompatActivity() {
     var courses: ArrayList<Course>? = null
     val bundle = Bundle()
     lateinit var toggle :ActionBarDrawerToggle
-    lateinit var switch: SwitchCompat
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
 

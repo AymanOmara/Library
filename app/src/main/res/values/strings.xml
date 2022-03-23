@@ -3,8 +3,7 @@
     <string name="introduction">The library contains important information about the College of Business for all Majors and different levels.  Where the user can search for the major, then the course to know all details of the course and also know the reference of the course, which makes him familiar enough with the course.</string>
     <string name="businessEnglishBtn">Business English</string>
     <string name="BusinessArabic">Business Arabic</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="courseDetailsName">Course Name:</string>
     <string name="courseID">course ID</string>
     <string name="prerequest">prerequest</string>

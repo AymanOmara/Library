@@ -11,10 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="40dp"
         android:text="@string/courseDetailsName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/courseDetailsNameValue"
@@ -40,10 +40,9 @@
         android:id="@+id/courseDetailsIDValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/courseDeatilsidLabel"
-        app:layout_constraintStart_toEndOf="@+id/courseDeatilsidLabel"
+        app:layout_constraintStart_toStartOf="@+id/courseDetailsNameValue"
         app:layout_constraintTop_toTopOf="@+id/courseDeatilsidLabel" />
 
     <TextView
@@ -60,10 +59,9 @@
         android:id="@+id/prerequest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/courseDeatilsPrerequestLabel"
-        app:layout_constraintStart_toEndOf="@+id/courseDeatilsPrerequestLabel"
+        app:layout_constraintStart_toStartOf="@+id/courseDetailsIDValue"
         app:layout_constraintTop_toTopOf="@+id/courseDeatilsPrerequestLabel" />
 
     <TextView
@@ -88,6 +86,7 @@
         app:layout_constraintTop_toTopOf="@+id/courseIntroduction" />
 
     <Button
+
         android:id="@+id/addToFavorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,4 +96,13 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/introductionValue" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/must_logo_web_min" />
 </androidx.constraintlayout.widget.ConstraintLayout>
