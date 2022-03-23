@@ -10,4 +10,9 @@
     <string name="prerequest">prerequest</string>
     <string name="courseIntroduction">course Introduction</string>
     <string name="addToFavorite">Add to favorite</string>
+    <string name="change_language">change language</string>
+    <string name="darkmode">DarkMode</string>
+    <string name="logout">logout</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
 </resources>
