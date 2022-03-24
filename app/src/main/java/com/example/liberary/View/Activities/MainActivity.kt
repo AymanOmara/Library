@@ -3,12 +3,12 @@ package com.example.liberary.View.Activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import androidx.lifecycle.lifecycleScope
-import com.example.liberary.LocalModel.LocalModel
 import com.example.liberary.R
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,10 +19,12 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         myIntent = Intent(this, WelcomeActivity::class.java)
-        lifecycleScope.launch {
+        lifecycleScope.launch (Dispatchers.Default){
             delay(5000)
-            startActivity(myIntent)
-            finish()
+            withContext(Dispatchers.Main){
+                startActivity(myIntent)
+                finish()
+            }
         }
     }
 }
