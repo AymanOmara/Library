@@ -1,10 +1,11 @@
 package com.example.liberary.View.Activities
 
+import android.app.PendingIntent.getActivity
+import android.content.Intent
 import android.os.Bundle
-
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -23,6 +24,7 @@ import com.example.liberary.ViewModels.ViewModel
 import com.example.liberary.constants.Constants
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -63,6 +65,11 @@ class HomeActivity : AppCompatActivity() {
                    application.cacheDir.delete()
                 }
                 R.id.switchDarkModeState ->{
+                }
+                R.id.logout-> {
+                    viewModel.clearAllData()
+                    restartApp()
+
                 }
             }
             true
@@ -123,5 +130,10 @@ class HomeActivity : AppCompatActivity() {
         val fragmentTransAction = fragmentManager.beginTransaction()
         fragmentTransAction.replace(R.id.framelayout, fragment)
         fragmentTransAction.commit()
+    }
+    fun restartApp(){
+        finish()
+        startActivity(Intent(this, MainActivity::class.java))
+        finishAffinity()
     }
 }

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.liberary.Course
 import io.realm.Realm
+import io.realm.kotlin.delete
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -36,6 +37,13 @@ object LocalModel{
             Log.d("model","${da.size}")
             emit(ArrayList(realm.copyFromRealm(da)))
         }
+    }
+     fun clearAll(){
+            Realm.init(context)
+            val realm = Realm.getDefaultInstance()
+            realm.beginTransaction()
+            realm.deleteAll()
+            realm.commitTransaction()
     }
 }
 
