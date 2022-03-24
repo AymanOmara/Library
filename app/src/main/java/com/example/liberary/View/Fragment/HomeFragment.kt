@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
                 return false
             }
             override fun onQueryTextChange(newText: String): Boolean {
-                isSearching = !newText.isEmpty()
+                isSearching = newText.isNotEmpty()
 
                 filter(newText)
                 return true
@@ -63,7 +63,7 @@ class HomeFragment : Fragment() {
     }
     private fun getPressesdItemIndex(index:Int){
         if (isSearching){
-            moveToNewActivity(filterdCourses.get(index))
+            moveToNewActivity(filterdCourses[index])
         }else{
             moveToNewActivity(courses.get(index))
         }
