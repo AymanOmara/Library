@@ -11,28 +11,35 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.liberary.Course
 import com.example.liberary.R
 import com.example.liberary.View.Fragment.FavoriteFragment
 import com.example.liberary.View.Fragment.HomeFragment
 import com.example.liberary.View.Fragment.RecentOpenFragment
+import com.example.liberary.ViewModels.ViewModel
 import com.example.liberary.constants.Constants
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_home.*
-
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 
 class HomeActivity : AppCompatActivity() {
     var courses: ArrayList<Course>? = null
     val bundle = Bundle()
     lateinit var toggle :ActionBarDrawerToggle
-
+    lateinit var viewModel:ViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        viewModel = ViewModelProvider(this).get(ViewModel::class.java)
+        viewModel.initContext(this)
         val menu: Menu = navigationView.menu
         val drawerLayout:DrawerLayout = findViewById(R.id.navigationDrawer)
         val navigationView:NavigationView = findViewById(R.id.navigationView)
@@ -82,11 +89,22 @@ class HomeActivity : AppCompatActivity() {
                     replaceFragment(homeFragment)
                 }
                 1 -> {
+                    var newData = ArrayList<Course>()
                     val favoriteFragment = FavoriteFragment()
-                    courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>?
-                    bundle.putSerializable(Constants.favorites,courses)
-                    favoriteFragment.arguments = bundle
-                    replaceFragment(favoriteFragment)
+                    lifecycleScope.launch {
+                        viewModel.getData().collect() {
+                            newData.addAll(it)
+                            Log.d("inside activity","${it.size}")
+                            //courses?.addAll(it)
+                        }
+                        bundle.putSerializable(Constants.favorites,newData)
+                        favoriteFragment.arguments = bundle
+                        replaceFragment(favoriteFragment)
+                    }
+
+
+                    //courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>?
+
                 }
                 2 ->{
                     replaceFragment(RecentOpenFragment())
@@ -115,4 +133,5 @@ class HomeActivity : AppCompatActivity() {
         fragmentTransAction.replace(R.id.framelayout, fragment)
         fragmentTransAction.commit()
     }
+
 }

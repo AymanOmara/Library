@@ -2,6 +2,7 @@ package com.example.liberary.View.Activities
 
 
 import android.os.Bundle
+import android.util.Log
 
 import android.widget.Button
 import android.widget.TextView
@@ -11,15 +12,16 @@ import androidx.lifecycle.lifecycleScope
 import com.example.liberary.Course
 import com.example.liberary.LocalModel.LocalModel
 import com.example.liberary.R
-import com.example.liberary.ViewModels.AddViewModel
+import com.example.liberary.ViewModels.ViewModel
 import com.example.liberary.constants.Constants
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+
 
 import kotlinx.coroutines.launch
 
 
 class DetailsActivity : AppCompatActivity() {
-    private  var viewModel = AddViewModel()
+    private  var viewModel = ViewModel()
     private lateinit var course:Course
     private lateinit var courseName:TextView
     private lateinit var courseID:TextView
@@ -38,6 +40,9 @@ class DetailsActivity : AppCompatActivity() {
 
             lifecycleScope.launch {
                 data()
+                LocalModel.getAll().collect(){
+                    Log.d("the fucking model get called","fuck flow")
+                }
             }
 
 
@@ -64,6 +69,12 @@ class DetailsActivity : AppCompatActivity() {
             }else{
                 showAlert("Error","this course had been added before to the favorite")
             }
+        }
+        LocalModel.getAll().collect(){
+            Log.d("call get data","${it.size}")
+        }
+        viewModel.getData().collect(){
+
         }
     }
 fun showAlert(header:String,body:String){

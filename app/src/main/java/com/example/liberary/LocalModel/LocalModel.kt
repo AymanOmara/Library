@@ -26,18 +26,15 @@ object LocalModel{
                 emit(false)
             }
         }
-
-
-
-
-
     }
-    fun getAll() : Flow<ArrayList<Course>>{
+
+    suspend fun getAll() : Flow<ArrayList<Course>>{
+        Log.d("model","")
         return  flow{
             Realm.init(context)
             val realm = Realm.getDefaultInstance()
             var da =  realm.where(Course::class.java).findAll()
-
+            Log.d("model","${da.size}")
             emit(ArrayList(realm.copyFromRealm(da)))
         }
     }

@@ -18,7 +18,7 @@ class App : Application
     override fun onCreate() {
         super.onCreate()
         setLocale("ar")
-        Log.d("App","App")
+        Log.d("AppAppAppAppAppAppApp","App")
         var change = ""
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val language = sharedPreferences.getString("language", "bak")
@@ -42,6 +42,7 @@ class App : Application
                 this,
                 MainActivity::class.java
             )
+            //startActivity(refresh)
 
         } else {
             Toast.makeText(
