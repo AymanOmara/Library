@@ -17,7 +17,7 @@ object LocalModel{
         return flow {
             Realm.init(context)
             val realm = Realm.getDefaultInstance()
-            var isBefore =  realm.where(Course::class.java).findAll().find { it.courseCode == course.courseCode }
+            val isBefore =  realm.where(Course::class.java).findAll().find { it.courseCode == course.courseCode }
             if (isBefore == null){
                 realm.beginTransaction()
                 realm.copyToRealm(course)
@@ -33,7 +33,7 @@ object LocalModel{
         return  flow{
             Realm.init(context)
             val realm = Realm.getDefaultInstance()
-            var da =  realm.where(Course::class.java).findAll()
+            val da =  realm.where(Course::class.java).findAll()
             Log.d("model","${da.size}")
             emit(ArrayList(realm.copyFromRealm(da)))
         }

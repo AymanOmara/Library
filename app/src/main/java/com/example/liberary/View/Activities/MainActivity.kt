@@ -4,8 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import androidx.lifecycle.lifecycleScope
 import com.example.liberary.LocalModel.LocalModel
 import com.example.liberary.R
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,16 +19,10 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         myIntent = Intent(this, WelcomeActivity::class.java)
-        Handler().postDelayed({
+        lifecycleScope.launch {
+            delay(5000)
             startActivity(myIntent)
             finish()
-        },5000)
-
-
-
-
-
-
+        }
     }
-
 }

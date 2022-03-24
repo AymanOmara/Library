@@ -14,6 +14,7 @@ import com.example.liberary.LocalModel.LocalModel
 import com.example.liberary.R
 import com.example.liberary.ViewModels.ViewModel
 import com.example.liberary.constants.Constants
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -38,7 +39,7 @@ class DetailsActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 data()
             }
-    }
+        }
     }
     private fun findViewByid(){
         courseName = findViewById(R.id.courseDetailsNameValue)
