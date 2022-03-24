@@ -3,7 +3,6 @@ package com.example.liberary.View.Fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,24 +24,17 @@ class FavoriteFragment : Fragment() {
     private lateinit var adapter: CoursesAdapter
     private var courses:ArrayList<Course>? = ArrayList()
 
-    override  fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override  fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        var view =  inflater.inflate(R.layout.fragment_favorite, container, false)
+        val view =  inflater.inflate(R.layout.fragment_favorite, container, false)
         val recyclerView: RecyclerView =  view.findViewById(R.id.favoritesrv)
 
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         courses = arguments?.get(Constants.favorites) as ArrayList<Course>
 
-        Log.d("favorite count","${courses?.size}")
-
         adapter = CoursesAdapter(courses!!) { getPressesdItemIndex(it)}
 
         recyclerView.adapter = adapter
-
-
 
         return  view
     }
@@ -59,7 +51,7 @@ class FavoriteFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         courses = arguments?.get(Constants.favorites) as ArrayList<Course>
-        Log.d("favorite count","${courses?.size}")
+
 
         adapter = CoursesAdapter(courses!!) { getPressesdItemIndex(it)}
         adapter.notifyDataSetChanged()

@@ -6,9 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.liberary.Course
 import com.example.liberary.LocalModel.LocalModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
-
 import kotlinx.coroutines.flow.single
 
 
@@ -24,7 +22,7 @@ class ViewModel:ViewModel() {
     }
     fun getData():Flow<ArrayList<Course>> {
         return flow{
-            LocalModel.getAll().collect() {
+            LocalModel.getAll().collect {
                 emit(it)
             }
         }
@@ -32,5 +30,4 @@ class ViewModel:ViewModel() {
     fun clearAllData(){
             LocalModel.clearAll()
         }
-
 }

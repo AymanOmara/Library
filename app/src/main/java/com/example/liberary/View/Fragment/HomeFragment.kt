@@ -21,20 +21,17 @@ class HomeFragment : Fragment() {
     private var filterdCourses:ArrayList<Course> = ArrayList()
 
     private lateinit var adapter: CoursesAdapter
-    private var searchBar:SearchView? = null
-    var courses:ArrayList<Course>? = null
-    var isSearching = false
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    private lateinit var searchBar:SearchView
+    private lateinit var courses:ArrayList<Course>
+    private var isSearching = false
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         courses = arguments?.get(Constants.homeCourses) as ArrayList<Course>
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         searchBar = view.findViewById(R.id.searchView)
-        searchBar?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
             }
@@ -45,7 +42,7 @@ class HomeFragment : Fragment() {
                 return true
             }})
         val recyclerView:RecyclerView =  view.findViewById(R.id.recyclerviewCourses)
-        adapter = CoursesAdapter(courses!!) {
+        adapter = CoursesAdapter(courses) {
             getPressesdItemIndex(it)
         }
         val layoutManager = LinearLayoutManager(this.context)
@@ -54,11 +51,11 @@ class HomeFragment : Fragment() {
         adapter.notifyDataSetChanged()
         return view
     }
-    fun filter(text:String){
-    filterdCourses.clear()
-        for (i in courses!!) {
+    private fun filter(text:String){
+        filterdCourses.clear()
+        courses.map { i ->
             if (i.courseCode.lowercase().contains(text.lowercase())) {
-                filterdCourses?.add(i)
+                filterdCourses.add(i)
             }
         }
         adapter.filterCourses(filterdCourses)
@@ -66,9 +63,9 @@ class HomeFragment : Fragment() {
     }
     private fun getPressesdItemIndex(index:Int){
         if (isSearching){
-            moveToNewActivity(filterdCourses?.get(index)!!)
+            moveToNewActivity(filterdCourses.get(index))
         }else{
-            moveToNewActivity(courses?.get(index)!!)
+            moveToNewActivity(courses.get(index))
         }
     }
     private fun moveToNewActivity(withCourse: Course) {
