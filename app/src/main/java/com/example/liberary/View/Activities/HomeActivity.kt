@@ -1,13 +1,13 @@
 package com.example.liberary.View.Activities
 
 import android.os.Bundle
-import android.util.Log
+
 import android.view.Menu
 import android.view.MenuItem
 
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -23,8 +23,6 @@ import com.example.liberary.ViewModels.ViewModel
 import com.example.liberary.constants.Constants
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 
@@ -33,8 +31,8 @@ class HomeActivity : AppCompatActivity() {
     val bundle = Bundle()
     lateinit var toggle :ActionBarDrawerToggle
     lateinit var viewModel:ViewModel
-    override fun onCreate(savedInstanceState: Bundle?) {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -53,21 +51,20 @@ class HomeActivity : AppCompatActivity() {
 
         action!!.findViewById<SwitchCompat>(R.id.switchDarkModeState)!!.setOnCheckedChangeListener { compoundButton, b ->
             if (b){
-                Log.d("done","true")
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }else{
-                Log.d("done","false")
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
         navigationView.setNavigationItemSelectedListener {
-
             when(it.itemId){
-                R.id.changeLanguage -> {Toast.makeText(applicationContext,"change language ",Toast.LENGTH_LONG).show()}
-                R.id.switchDarkModeState ->{
+                R.id.changeLanguage -> {
 
+                   application.cacheDir.delete()
+                }
+                R.id.switchDarkModeState ->{
                 }
             }
-
-
             true
         }
 
@@ -94,17 +91,12 @@ class HomeActivity : AppCompatActivity() {
                     lifecycleScope.launch {
                         viewModel.getData().collect() {
                             newData.addAll(it)
-                            Log.d("inside activity","${it.size}")
-                            //courses?.addAll(it)
+
                         }
                         bundle.putSerializable(Constants.favorites,newData)
                         favoriteFragment.arguments = bundle
                         replaceFragment(favoriteFragment)
                     }
-
-
-                    //courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>?
-
                 }
                 2 ->{
                     replaceFragment(RecentOpenFragment())
@@ -115,7 +107,6 @@ class HomeActivity : AppCompatActivity() {
         bundle.putSerializable(Constants.homeCourses,courses)
         homeFragment.arguments = bundle
         replaceFragment(homeFragment)
-
 
     }
 
@@ -133,5 +124,4 @@ class HomeActivity : AppCompatActivity() {
         fragmentTransAction.replace(R.id.framelayout, fragment)
         fragmentTransAction.commit()
     }
-
 }

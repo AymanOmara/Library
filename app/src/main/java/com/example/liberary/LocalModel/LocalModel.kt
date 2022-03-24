@@ -29,7 +29,6 @@ object LocalModel{
     }
 
     suspend fun getAll() : Flow<ArrayList<Course>>{
-        Log.d("model","")
         return  flow{
             Realm.init(context)
             val realm = Realm.getDefaultInstance()
