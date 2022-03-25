@@ -1,8 +1,10 @@
 package com.example.liberary.View.Activities
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 
 import android.view.Menu
 import android.view.MenuItem
@@ -20,12 +22,17 @@ import com.example.liberary.R
 import com.example.liberary.View.Fragment.FavoriteFragment
 import com.example.liberary.View.Fragment.HomeFragment
 import com.example.liberary.View.Fragment.RecentOpenFragment
-import com.example.liberary.ViewModels.ViewModel
+import com.example.liberary.ViewModel.ViewModel
 import com.example.liberary.constants.Constants
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.single
 
-import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.coroutines.suspendCoroutine
 
 
 class HomeActivity : AppCompatActivity() {
@@ -50,6 +57,10 @@ class HomeActivity : AppCompatActivity() {
 
         val item =  menu.findItem(R.id.app_bar_switch)
         val action = item?.actionView
+        runBlocking {
+            //action!!.findViewById<SwitchCompat>(R.id.switchDarkModeState)!!.isChecked = viewModel.getPreferences().single().isDarkMode
+            //this.cancel()
+        }
 
         action!!.findViewById<SwitchCompat>(R.id.switchDarkModeState)!!.setOnCheckedChangeListener { _, b ->
             if (b){
@@ -57,10 +68,42 @@ class HomeActivity : AppCompatActivity() {
             }else{
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
+            runBlocking {
+                val language = viewModel.getPreferences().single().language
+                if (language == "ar"){
+                    setAppLocale(this@HomeActivity,"ar")
+                }else{
+                    setAppLocale(this@HomeActivity,"en")
+                }
+            }
+            viewModel.saveDarkModeState(b)
         }
         navigationView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.changeLanguage -> {
+
+                    runBlocking {
+                       // val prefs = viewModel.getPreferences().single()
+
+                        viewModel.getPreferences().collect{
+
+                            if (it.language == "en"){
+                                viewModel.saveToPreferences("ar")
+                                setAppLocale(this@HomeActivity,"ar")
+
+                            }else if(it.language == "ar"){
+                                viewModel.saveToPreferences("en")
+                                setAppLocale(this@HomeActivity,"en")
+                            }else if(it.language == Constants.noData){
+                                viewModel.saveToPreferences("ar")
+                                setAppLocale(this@HomeActivity,"ar")
+                            }
+                        }
+                    }
+
+                    val myCutome = Intent(this, HomeActivity::class.java)
+                    myCutome.putExtras(intent)
+                    startActivity(myCutome)
 
                 }
                 R.id.switchDarkModeState -> {
@@ -100,7 +143,6 @@ class HomeActivity : AppCompatActivity() {
                             replaceFragment(favoriteFragment)
 
                         }
-
                     }
                 }
                 2 ->{
@@ -133,5 +175,13 @@ class HomeActivity : AppCompatActivity() {
         finish()
         startActivity(Intent(this, MainActivity::class.java))
         finishAffinity()
+    }
+    fun setAppLocale(context: Context, language: String) {
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val config = context.resources.configuration
+        config.setLocale(locale)
+        context.createConfigurationContext(config)
+        context.resources.updateConfiguration(config, context.resources.displayMetrics)
     }
 }

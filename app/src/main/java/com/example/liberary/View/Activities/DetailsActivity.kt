@@ -12,9 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import com.example.liberary.Course
 import com.example.liberary.LocalModel.LocalModel
 import com.example.liberary.R
-import com.example.liberary.ViewModels.ViewModel
+import com.example.liberary.ViewModel.ViewModel
 import com.example.liberary.constants.Constants
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
