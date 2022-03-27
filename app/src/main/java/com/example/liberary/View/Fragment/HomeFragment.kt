@@ -28,6 +28,7 @@ class HomeFragment : Fragment() {
 
         courses = arguments?.get(Constants.homeCourses) as ArrayList<Course>
 
+
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         searchBar = view.findViewById(R.id.searchView)
@@ -50,6 +51,11 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = adapter
         adapter.notifyDataSetChanged()
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
     private fun filter(text:String){
         filterdCourses.clear()

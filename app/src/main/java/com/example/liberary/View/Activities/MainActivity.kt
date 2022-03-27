@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(ViewModel::class.java)
         viewModel.initContext(this)
         myIntent = Intent(this, WelcomeActivity::class.java)
-        lifecycleScope.launch{
+        lifecycleScope.launch(Dispatchers.Main){
             val prefs = viewModel.getPreferences().single()
             if (prefs.isDarkMode){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)

@@ -33,7 +33,7 @@ class MajorsActivity : AppCompatActivity() {
 
         val myIntent = Intent(this, HomeActivity::class.java)
 
-        myIntent?.putExtra(Constants.courses, majorsArray?.get(position)?.courses)
+        myIntent.putExtra(Constants.courses, majorsArray?.get(position)?.courses)
         startActivity(myIntent)
     }
 }

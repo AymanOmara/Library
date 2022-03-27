@@ -27,6 +27,7 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var courseIntroduction:TextView
     private lateinit var favorite:Button
     private lateinit var recentCourse:Course
+    private lateinit var refrences:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +41,10 @@ class DetailsActivity : AppCompatActivity() {
         recentCourse = course.clone()
 
         recentCourse.isRecent = true
-        addCourse(recentCourse)
+        lifecycleScope.launch {
+            viewModel.addToFavorite(course)
+        }
+        //addCourse(recentCourse)
         Log.d("recent","${recentCourse.isRecent}")
         Log.d("recent","${course.isRecent}")
         favorite.setOnClickListener {
@@ -54,13 +58,14 @@ class DetailsActivity : AppCompatActivity() {
         coursePrerequest = findViewById(R.id.prerequest)
         courseIntroduction = findViewById(R.id.introductionValue)
         favorite = findViewById(R.id.addToFavorite)
+        refrences = findViewById(R.id.refrences)
     }
     private fun bindDataToView(){
         courseName.text = course.courseName
         courseID.text = course.courseCode
         courseIntroduction.text = course.courseDescription
         coursePrerequest.text = course.preRequest
-
+        refrences.text = course.refreces
     }
     private  fun addCourse(course:Course){
         lifecycleScope.launch {
