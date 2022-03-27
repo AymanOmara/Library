@@ -10,7 +10,7 @@ import java.util.*
 
 data class Major(val majorName:String,val courses: ArrayList<Course>):Serializable{}
 
-open class Course(): RealmObject(),Serializable{
+open class Course(): RealmObject(),Serializable,Cloneable{
     var isRecent:Boolean = false
     var courseName:String = ""
     var courseCode:String = ""
@@ -25,5 +25,15 @@ open class Course(): RealmObject(),Serializable{
         this.level = level
         this.preRequest = preRequest
         this.refreces = refreces
+    }
+   public override fun clone(): Course {
+        val course = Course()
+        course.isRecent = isRecent
+        course.courseCode = courseCode
+        course.courseName = courseName
+        course.courseDescription = courseDescription
+        course.level = level
+        course.preRequest = preRequest
+        return course
     }
     }

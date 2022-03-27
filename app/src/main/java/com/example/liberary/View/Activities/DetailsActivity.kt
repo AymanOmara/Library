@@ -2,6 +2,7 @@ package com.example.liberary.View.Activities
 
 
 import android.os.Bundle
+import android.util.Log
 
 
 import android.widget.Button
@@ -25,20 +26,26 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var coursePrerequest:TextView
     private lateinit var courseIntroduction:TextView
     private lateinit var favorite:Button
-    // Mark:- Refrences
+    private lateinit var recentCourse:Course
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
         findViewByid()
         course = intent.getSerializableExtra(Constants.details) as Course
+
         bindDataToView()
         LocalModel.context = this
 
-        favorite.setOnClickListener {
+        recentCourse = course.clone()
 
-            lifecycleScope.launch {
-                data()
-            }
+        recentCourse.isRecent = true
+        addCourse(recentCourse)
+        Log.d("recent","${recentCourse.isRecent}")
+        Log.d("recent","${course.isRecent}")
+        favorite.setOnClickListener {
+            Log.d("recent","${course.isRecent}")
+                addCourse(course)
         }
     }
     private fun findViewByid(){
@@ -55,7 +62,8 @@ class DetailsActivity : AppCompatActivity() {
         coursePrerequest.text = course.preRequest
 
     }
-    private suspend fun data(){
+    private  fun addCourse(course:Course){
+        lifecycleScope.launch {
         viewModel.addToFavorite(course).collect(){
             if (it){
                 showAlert("Done","this course added to the favorite successfully")
@@ -63,6 +71,12 @@ class DetailsActivity : AppCompatActivity() {
                 showAlert("Error","this course had been added before to the favorite")
             }
         }
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        viewModel.removeRecent(recentCourse)
     }
 fun showAlert(header:String,body:String){
     val builder = AlertDialog.Builder(this)

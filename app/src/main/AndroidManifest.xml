@@ -5,7 +5,7 @@
 
     <application
 
-        android:name=".App.App"
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,10 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Liberary">
 
-        <activity android:name=".View.Activities.DetailsActivity"></activity>
-        <activity android:name=".View.Activities.HomeActivity"
-            >
-            android:configChanges="uiMode"
+        <activity android:name=".View.Activities.DetailsActivity"/>
+        <activity android:name=".View.Activities.HomeActivity">
+
         </activity>
         <activity android:name=".View.Activities.MajorsActivity" />
         <activity android:name=".View.Activities.WelcomeActivity" />

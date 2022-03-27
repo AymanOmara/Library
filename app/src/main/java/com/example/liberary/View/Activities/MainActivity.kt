@@ -3,13 +3,17 @@ package com.example.liberary.View.Activities
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
-import androidx.appcompat.app.AppCompatActivity
+import android.content.res.Resources
 import android.os.Bundle
+import android.util.DisplayMetrics
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.example.liberary.App.MyContextWrapper
 import com.example.liberary.R
 import com.example.liberary.ViewModel.ViewModel
+import com.example.liberary.constants.Constants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.single
@@ -37,13 +41,6 @@ class MainActivity : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
             }
-            if (prefs.language == "en"){
-                setAppLocale(this@MainActivity,"en")
-            }else if(prefs.language == "ar"){
-                setAppLocale(this@MainActivity,"ar")
-            }else{
-                setAppLocale(this@MainActivity,"en")
-            }
 
             delay(5000)
             withContext(Dispatchers.Main){
@@ -54,14 +51,16 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun setAppLocale(context: Context, language: String) {
-
-        val locale = Locale(language)
-        Locale.setDefault(locale)
-        val config = context.resources.configuration
-        config.setLocale(locale)
-        context.createConfigurationContext(config)
-        context.resources.updateConfiguration(config, context.resources.displayMetrics)
+    override fun attachBaseContext(newBase: Context?) {
+        val sharedPreferences = newBase?.getSharedPreferences(Constants.sharedName,MODE_PRIVATE)
+        val language = sharedPreferences?.getString(Constants.language, "en")
+        super.attachBaseContext(newBase?.let { MyContextWrapper.wrap(it, language!!) })
+        val locale = Locale(language!!)
+        val resources = baseContext.resources
+        val conf = resources.configuration
+        conf.locale = locale
+        resources.updateConfiguration(conf, resources.displayMetrics)
     }
+
 
 }

@@ -5,12 +5,10 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import com.example.liberary.Course
+import com.example.liberary.DTO.Prefs
 import com.example.liberary.LocalModel.LocalModel
 import com.example.liberary.LocalModel.Shared
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.single
+import kotlinx.coroutines.flow.*
 
 
 class ViewModel:ViewModel() {
@@ -18,7 +16,6 @@ class ViewModel:ViewModel() {
 
     fun initContext(context:AppCompatActivity){
         LocalModel.context = context
-        Log.d("initContext","initContext")
         shared = Shared(context)
     }
 
@@ -35,6 +32,7 @@ class ViewModel:ViewModel() {
         }
     }
     fun clearAllData(){
+            removeAllShared()
             LocalModel.clearAll()
         }
      fun getPreferences():Flow<Prefs>{
@@ -50,5 +48,25 @@ class ViewModel:ViewModel() {
     fun saveDarkModeState(isDarkMode:Boolean){
         shared.saveDarkMode(isDarkMode)
     }
+    fun removeAllShared(){
+        shared.removeAllShared()
+    }
+    fun getOPendRecent():Flow<ArrayList<Course>> {
+    return flow {
+        val recentOnly = ArrayList<Course>()
+        getData().collect {
+            it.map {
+                if(it.isRecent){
+                    recentOnly.add(it)
+                }
+            }
+        }
+        emit(recentOnly)
+    }
+    }
+    fun removeRecent(course:Course){
+        LocalModel.removeRecent(course)
+    }
+
+
 }
-data class Prefs(val language: String,val isDarkMode:Boolean){}

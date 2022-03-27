@@ -11,6 +11,7 @@ class Constants {
        val language = "language"
        val darkMode = "darkMode"
        val noData = "no data"
+       val sharedName = "PREFERENCE_NAME"
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.liberary.LocalModel
 
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.liberary.Course
 import io.realm.Realm
@@ -13,14 +14,24 @@ object LocalModel{
         return flow {
             Realm.init(context)
             val realm = Realm.getDefaultInstance()
-            val isBefore = realm.where(Course::class.java).findAll().find { it.courseCode == course.courseCode }
-            if (isBefore == null){
+            //val isBefore = realm.where(Course::class.java).findAll().find { it.courseCode == course.courseCode && it.isRecent}
+            if(course.isRecent){
                 realm.beginTransaction()
                 realm.copyToRealm(course)
                 realm.commitTransaction()
                 emit(true)
             }else{
-                emit(false)
+                val isBefore = realm.where(Course::class.java).findAll().find { it.courseCode == course.courseCode && !it.isRecent}
+
+                if (isBefore == null && !course.isRecent){
+                    realm.beginTransaction()
+                    realm.copyToRealm(course)
+                    realm.commitTransaction()
+                    emit(true)
+                }else{
+                    emit(false)
+                    Log.d("my recent Model Value","${isBefore?.courseCode} ${isBefore?.isRecent}")
+                }
             }
         }
     }
@@ -29,7 +40,8 @@ object LocalModel{
         return  flow{
             Realm.init(context)
             val realm = Realm.getDefaultInstance()
-            val da =  realm.where(Course::class.java).findAll()
+            val da = realm.where(Course::class.java).findAll()
+
             emit(ArrayList(realm.copyFromRealm(da)))
         }
     }
@@ -39,6 +51,15 @@ object LocalModel{
             realm.beginTransaction()
             realm.deleteAll()
             realm.commitTransaction()
+    }
+    fun removeRecent(course:Course){
+        Realm.init(context)
+        val realm = Realm.getDefaultInstance()
+        val obj = realm.where(Course::class.java).findAll().find { it.isRecent }
+        realm.beginTransaction()
+        obj?.deleteFromRealm()
+
+        realm.commitTransaction()
     }
 }
 
