@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/drawable/recenticon.xml" value="0.178" />
         <entry key="app/src/main/res/layout/activity_details.xml" value="0.8958786010742188" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.14402173913043478" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.31875" />
         <entry key="app/src/main/res/layout/courserecyclerviewitem.xml" value="0.48456891930621604" />
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.14402173913043478" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.15806159420289856" />

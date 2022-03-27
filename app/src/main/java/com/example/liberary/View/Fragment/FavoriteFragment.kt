@@ -11,6 +11,7 @@ import android.view.ViewGroup
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.example.liberary.Adapters.CoursesAdapter
 import com.example.liberary.Course
 
@@ -22,6 +23,7 @@ import com.example.liberary.constants.Constants
 class FavoriteFragment : Fragment() {
 
     private lateinit var adapter: CoursesAdapter
+    private lateinit var animationView:LottieAnimationView
     private var courses:ArrayList<Course>? = ArrayList()
 
     override  fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -31,7 +33,7 @@ class FavoriteFragment : Fragment() {
 
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         courses = arguments?.get(Constants.favorites) as ArrayList<Course>
-
+        animationView = view.findViewById(R.id.favortieanimationView)
         adapter = CoursesAdapter(courses!!) { getPressesdItemIndex(it)}
 
         recyclerView.adapter = adapter
@@ -51,7 +53,13 @@ class FavoriteFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         courses = arguments?.get(Constants.favorites) as ArrayList<Course>
+        if(courses?.size == 0){
+            animationView.alpha = 1f
+            animationView.playAnimation()
+        }else{
+            animationView.alpha = 0f
 
+        }
 
         adapter = CoursesAdapter(courses!!) { getPressesdItemIndex(it)}
         adapter.notifyDataSetChanged()
