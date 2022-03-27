@@ -6,6 +6,7 @@
         android:id="@+id/changeLanguage"
         android:icon="@drawable/languageicon"/>
     <item
+        android:icon="@drawable/darkmodeicon"
         android:id="@+id/app_bar_switch"
         android:title="@string/darkmode"
         app:showAsAction="always"

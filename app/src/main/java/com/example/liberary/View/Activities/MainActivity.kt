@@ -2,6 +2,7 @@ package com.example.liberary.View.Activities
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
@@ -31,8 +32,10 @@ class MainActivity : AppCompatActivity() {
             val prefs = viewModel.getPreferences().single()
             if (prefs.isDarkMode){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
             }else if(!prefs.isDarkMode){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
             }
             if (prefs.language == "en"){
                 setAppLocale(this@MainActivity,"en")
@@ -49,7 +52,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
     fun setAppLocale(context: Context, language: String) {
+
         val locale = Locale(language)
         Locale.setDefault(locale)
         val config = context.resources.configuration
@@ -57,4 +63,5 @@ class MainActivity : AppCompatActivity() {
         context.createConfigurationContext(config)
         context.resources.updateConfiguration(config, context.resources.displayMetrics)
     }
+
 }

@@ -25,6 +25,7 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var coursePrerequest:TextView
     private lateinit var courseIntroduction:TextView
     private lateinit var favorite:Button
+    // Mark:- Refrences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)

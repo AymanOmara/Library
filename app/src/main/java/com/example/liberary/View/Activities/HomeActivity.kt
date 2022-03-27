@@ -1,11 +1,12 @@
 package com.example.liberary.View.Activities
 
 
+import android.app.UiModeManager
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
-
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -26,13 +27,10 @@ import com.example.liberary.ViewModel.ViewModel
 import com.example.liberary.constants.Constants
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.single
-
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.coroutines.suspendCoroutine
 
 
 class HomeActivity : AppCompatActivity() {
@@ -45,11 +43,13 @@ class HomeActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
         viewModel = ViewModelProvider(this).get(ViewModel::class.java)
         viewModel.initContext(this)
         val menu: Menu = navigationView.menu
         val drawerLayout:DrawerLayout = findViewById(R.id.navigationDrawer)
         val navigationView:NavigationView = findViewById(R.id.navigationView)
+
         toggle = ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
@@ -57,33 +57,40 @@ class HomeActivity : AppCompatActivity() {
 
         val item =  menu.findItem(R.id.app_bar_switch)
         val action = item?.actionView
+
+
+
         runBlocking {
-            //action!!.findViewById<SwitchCompat>(R.id.switchDarkModeState)!!.isChecked = viewModel.getPreferences().single().isDarkMode
-            //this.cancel()
+            action!!.findViewById<SwitchCompat>(R.id.switchDarkModeState)!!.isChecked = viewModel.getPreferences().single().isDarkMode
         }
 
         action!!.findViewById<SwitchCompat>(R.id.switchDarkModeState)!!.setOnCheckedChangeListener { _, b ->
+
             if (b){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            }else{
+                viewModel.saveDarkModeState(true)
+
+            }else if(!b){
+                viewModel.saveDarkModeState(false)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
             runBlocking {
                 val language = viewModel.getPreferences().single().language
-                if (language == "ar"){
+
+                if(language == "ar"){
                     setAppLocale(this@HomeActivity,"ar")
-                }else{
+                }else if(language == "en"){
+                    setAppLocale(this@HomeActivity,"en")
+                }else if(language ==Constants.noData){
                     setAppLocale(this@HomeActivity,"en")
                 }
             }
-            viewModel.saveDarkModeState(b)
         }
         navigationView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.changeLanguage -> {
 
                     runBlocking {
-                       // val prefs = viewModel.getPreferences().single()
 
                         viewModel.getPreferences().collect{
 
@@ -162,7 +169,6 @@ class HomeActivity : AppCompatActivity() {
             return  true
         }
         return super.onOptionsItemSelected(item)
-
     }
 
     private fun replaceFragment(fragment: Fragment){

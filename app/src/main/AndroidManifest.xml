@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.liberary">
 
     <application
+
         android:name=".App.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,14 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Liberary">
+
         <activity android:name=".View.Activities.DetailsActivity"></activity>
-        <activity android:name=".View.Activities.HomeActivity" />
+        <activity android:name=".View.Activities.HomeActivity"
+            >
+            android:configChanges="uiMode"
+        </activity>
         <activity android:name=".View.Activities.MajorsActivity" />
         <activity android:name=".View.Activities.WelcomeActivity" />
         <activity android:name=".View.Activities.MainActivity"
+
             android:exported="true">
 
             <intent-filter>
+
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
