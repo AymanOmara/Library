@@ -20,5 +20,9 @@
     <string name="open">فتح</string>
     <string name="close">غلق</string>
     <string name="refrences">المراجع</string>
+    <string name="Done">تم</string>
+    <string name="Error">خطأ</string>
+    <string name="isBefore">تم إضافة هذه المادة مسبقا</string>
+    <string name="isnotBefore">تم اضافة هذه الماده بنجاح</string>
 
 </resources>

@@ -44,11 +44,7 @@ class DetailsActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.addToFavorite(course)
         }
-        //addCourse(recentCourse)
-        Log.d("recent","${recentCourse.isRecent}")
-        Log.d("recent","${course.isRecent}")
         favorite.setOnClickListener {
-            Log.d("recent","${course.isRecent}")
                 addCourse(course)
         }
     }
@@ -71,9 +67,9 @@ class DetailsActivity : AppCompatActivity() {
         lifecycleScope.launch {
         viewModel.addToFavorite(course).collect(){
             if (it){
-                showAlert("Done","this course added to the favorite successfully")
+                showAlert(resources.getString(R.string.Done),resources.getString(R.string.isnotBefore))
             }else{
-                showAlert("Error","this course had been added before to the favorite")
+                showAlert(resources.getString(R.string.Error),resources.getString(R.string.isBefore))
             }
         }
         }
