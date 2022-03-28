@@ -19,4 +19,5 @@
     <string name="Error">Error</string>
     <string name="isBefore">this course had been added before to the favorite</string>
     <string name="isnotBefore">this course added to the favorite successfully</string>
+    <string name="notValidURL">this url is not valid</string>
 </resources>

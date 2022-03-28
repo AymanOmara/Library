@@ -24,5 +24,6 @@
     <string name="Error">خطأ</string>
     <string name="isBefore">تم إضافة هذه المادة مسبقا</string>
     <string name="isnotBefore">تم اضافة هذه الماده بنجاح</string>
+    <string name="notValidURL">this url is not valid</string>
 
 </resources>

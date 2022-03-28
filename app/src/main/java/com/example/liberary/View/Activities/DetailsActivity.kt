@@ -1,8 +1,11 @@
 package com.example.liberary.View.Activities
 
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.webkit.URLUtil
 
 
 import android.widget.Button
@@ -16,6 +19,7 @@ import com.example.liberary.R
 import com.example.liberary.ViewModel.ViewModel
 import com.example.liberary.constants.Constants
 import kotlinx.coroutines.launch
+import java.net.URI
 
 
 class DetailsActivity : AppCompatActivity() {
@@ -35,6 +39,18 @@ class DetailsActivity : AppCompatActivity() {
         findViewByid()
         course = intent.getSerializableExtra(Constants.details) as Course
 
+        refrences.setOnClickListener {
+            val openURL = Intent(Intent.ACTION_VIEW)
+            var url = refrences.text.toString()
+
+            if(URLUtil.isValidUrl(url)) {
+                openURL.data = Uri.parse(url)
+
+                startActivity(openURL)
+            }else{
+                showAlert(resources.getString(R.string.Error),resources.getString(R.string.notValidURL))
+            }
+        }
         bindDataToView()
         LocalModel.context = this
 
