@@ -4,7 +4,6 @@ package com.example.liberary.View.Activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.preference.Preference
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -17,7 +16,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.example.liberary.App.MyContextWrapper
 import com.example.liberary.Course

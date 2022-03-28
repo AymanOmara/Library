@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 
 class Shared(var context: AppCompatActivity) {
     private val sharedPreference=this.context.getSharedPreferences(Constants.sharedName, Context.MODE_PRIVATE)
-    private var editor:SharedPreferences.Editor = sharedPreference.edit()
+    private val editor:SharedPreferences.Editor = sharedPreference.edit()
 
     fun savePrefrences(language:String){
         editor.putString(Constants.language,language)
@@ -24,8 +24,6 @@ class Shared(var context: AppCompatActivity) {
     }
     fun getPrefrences(): Flow<Prefs> {
         return flow {
-
-
             emit(Prefs(sharedPreference.getString(Constants.language,Constants.noData)!!,
                 sharedPreference.getBoolean(Constants.darkMode, false)
             ))

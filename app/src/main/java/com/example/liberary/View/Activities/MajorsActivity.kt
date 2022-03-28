@@ -13,7 +13,7 @@ import com.example.liberary.constants.Constants
 
 
 class MajorsActivity : AppCompatActivity() {
-    var majorsArray:ArrayList<Major>? = null
+    private var majorsArray:ArrayList<Major>? = null
     private lateinit var adapter: MajorAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

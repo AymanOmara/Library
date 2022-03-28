@@ -41,7 +41,7 @@ class DetailsActivity : AppCompatActivity() {
 
         refrences.setOnClickListener {
             val openURL = Intent(Intent.ACTION_VIEW)
-            var url = refrences.text.toString()
+            val url = refrences.text.toString()
 
             if(URLUtil.isValidUrl(url)) {
                 openURL.data = Uri.parse(url)
@@ -95,10 +95,10 @@ class DetailsActivity : AppCompatActivity() {
         super.onBackPressed()
         viewModel.removeRecent(recentCourse)
     }
-fun showAlert(header:String,body:String){
-    val builder = AlertDialog.Builder(this)
-    builder.setTitle(header)
-    builder.setMessage(body)
-    builder.show()
-}
+    private fun showAlert(header:String, body:String){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(header)
+        builder.setMessage(body)
+        builder.show()
+    }
 }

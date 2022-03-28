@@ -14,7 +14,6 @@ object LocalModel{
         return flow {
             Realm.init(context)
             val realm = Realm.getDefaultInstance()
-            //val isBefore = realm.where(Course::class.java).findAll().find { it.courseCode == course.courseCode && it.isRecent}
             if(course.isRecent){
                 realm.beginTransaction()
                 realm.copyToRealm(course)
@@ -52,13 +51,12 @@ object LocalModel{
             realm.deleteAll()
             realm.commitTransaction()
     }
-    fun removeRecent(course:Course){
+    fun removeRecent() {
         Realm.init(context)
         val realm = Realm.getDefaultInstance()
         val obj = realm.where(Course::class.java).findAll().find { it.isRecent }
         realm.beginTransaction()
         obj?.deleteFromRealm()
-
         realm.commitTransaction()
     }
 }
