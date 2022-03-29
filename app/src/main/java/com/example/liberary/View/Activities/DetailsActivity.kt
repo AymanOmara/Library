@@ -18,6 +18,7 @@ import com.example.liberary.LocalModel.LocalModel
 import com.example.liberary.R
 import com.example.liberary.ViewModel.ViewModel
 import com.example.liberary.constants.Constants
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.net.URI
 
@@ -58,7 +59,7 @@ class DetailsActivity : AppCompatActivity() {
 
         recentCourse.isRecent = true
         lifecycleScope.launch {
-            viewModel.addToFavorite(course)
+            viewModel.addToFavorite(recentCourse)
         }
         favorite.setOnClickListener {
                 addCourse(course)
@@ -93,7 +94,20 @@ class DetailsActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        viewModel.removeRecent(recentCourse)
+        Log.d("did press back","")
+
+        viewModel.removeRecent()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("my data in ondestory","")
+        lifecycleScope.launch {
+            viewModel.getOPendRecent().collect{
+                Log.d("my data in ondestory","${it.size}")
+            }
+        }
+
     }
     private fun showAlert(header:String, body:String){
         val builder = AlertDialog.Builder(this)

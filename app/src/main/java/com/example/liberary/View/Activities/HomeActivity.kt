@@ -12,6 +12,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -39,6 +40,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var toggle :ActionBarDrawerToggle
     private lateinit var viewModel:ViewModel
     private lateinit var action: View
+    private lateinit var drawerLayout:DrawerLayout
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -47,7 +49,7 @@ class HomeActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(ViewModel::class.java)
         viewModel.initContext(this)
         val menu: Menu = navigationView.menu
-        val drawerLayout:DrawerLayout = findViewById(R.id.navigationDrawer)
+        drawerLayout = findViewById(R.id.navigationDrawer)
         val navigationView:NavigationView = findViewById(R.id.navigationView)
 
         toggle = ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close)
@@ -55,6 +57,9 @@ class HomeActivity : AppCompatActivity() {
         toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.close()
+        }
         val item =  menu.findItem(R.id.app_bar_switch)
          action = item!!.actionView
 
@@ -63,18 +68,20 @@ class HomeActivity : AppCompatActivity() {
         runBlocking {  action!!.findViewById<SwitchCompat>(R.id.switchDarkModeState)!!.isChecked = viewModel.getPreferences().single().isDarkMode }
         action!!.findViewById<SwitchCompat>(R.id.switchDarkModeState)!!.setOnCheckedChangeListener { _, b ->
             if (b){
-                Log.d("on click called","called")
+                //Log.d("on click called","called")
                 viewModel.saveDarkModeState(true)
 
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+                drawerLayout.close()
+                //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
             }else if(!b){
-                Log.d("on click called","called")
+               // Log.d("on click called","called")
                 viewModel.saveDarkModeState(false)
 
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                drawerLayout.close()
+                //supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
             }
@@ -95,7 +102,7 @@ class HomeActivity : AppCompatActivity() {
                     val myCutome = Intent(this@HomeActivity, HomeActivity::class.java)
 
                     myCutome.putExtras(intent)
-                    Log.d("my item called","my item called")
+                    //Log.d("my item called","my item called")
                     startActivity(myCutome)
 
                 }
@@ -166,6 +173,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         action = View(this)
+        drawerLayout.close()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
