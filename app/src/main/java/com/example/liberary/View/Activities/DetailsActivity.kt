@@ -2,14 +2,9 @@ package com.example.liberary.View.Activities
 
 
 import android.app.DownloadManager
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.webkit.CookieManager
-import android.webkit.URLUtil
-
-
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -21,7 +16,6 @@ import com.example.liberary.LocalModel.LocalModel
 import com.example.liberary.R
 import com.example.liberary.ViewModel.ViewModel
 import com.example.liberary.constants.Constants
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -35,14 +29,22 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var favorite:Button
     private lateinit var recentCourse:Course
     private lateinit var refrences:TextView
-    private lateinit var downloadManager:DownloadManager
+    private lateinit var manager:DownloadManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
         findViewByid()
         course = intent.getSerializableExtra(Constants.details) as Course
-
+        manager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
         refrences.setOnClickListener {
+
+            val uri =
+                Uri.parse("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf")
+            val request = DownloadManager.Request(uri)
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+            val reference: Long = manager.enqueue(request)
+            Toast.makeText(this,"start loading",Toast.LENGTH_LONG).show()
+            /*
            // showAlert("start loading","....")
 
             var url = refrences.text.toString()
@@ -55,7 +57,7 @@ class DetailsActivity : AppCompatActivity() {
                 Toast.makeText(this,"downLoad start",Toast.LENGTH_LONG).show()
             }else{
                 showAlert(resources.getString(R.string.Error),resources.getString(R.string.notValidURL))
-            }
+            }*/
         }
         bindDataToView()
         LocalModel.context = this
@@ -85,7 +87,7 @@ class DetailsActivity : AppCompatActivity() {
         coursePrerequest.text = course.preRequest
         refrences.text = course.refreces
     }
-    private  fun addCourse(course:Course){
+    private fun addCourse(course:Course){
         lifecycleScope.launch {
         viewModel.addToFavorite(course).collect(){
             if (it){
@@ -100,19 +102,7 @@ class DetailsActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         Log.d("did press back","")
-
         viewModel.removeRecent()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("my data in ondestory","")
-        lifecycleScope.launch {
-            viewModel.getOPendRecent().collect{
-                Log.d("my data in ondestory","${it.size}")
-            }
-        }
-
     }
     private fun showAlert(header:String, body:String){
         val builder = AlertDialog.Builder(this)

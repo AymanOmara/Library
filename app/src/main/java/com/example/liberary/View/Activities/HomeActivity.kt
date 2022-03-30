@@ -3,18 +3,14 @@ package com.example.liberary.View.Activities
 
 import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.ActionMenuView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -64,7 +60,8 @@ class HomeActivity : AppCompatActivity() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.close()
         }
-
+        val item =  menu.findItem(R.id.app_bar_switch)
+        action = item!!.actionView
         runBlocking { action?.findViewById<SwitchCompat>(R.id.switchDarkModeState)!!.isChecked = viewModel.getPreferences().single().isDarkMode }
         navigationView.setNavigationItemSelectedListener {
             when(it.itemId){
@@ -79,11 +76,11 @@ class HomeActivity : AppCompatActivity() {
                             }
                         }
                     }
-                    val myCutome = Intent(this@HomeActivity, HomeActivity::class.java)
+                    val myCustom = Intent(this@HomeActivity, HomeActivity::class.java)
 
-                    myCutome.putExtras(intent)
+                    myCustom.putExtras(intent)
 
-                    startActivity(myCutome)
+                    startActivity(myCustom)
 
                 }
                 R.id.app_bar_switch -> {
@@ -103,20 +100,7 @@ class HomeActivity : AppCompatActivity() {
                     restartApp()
                 }
             }
-            val item =  menu.findItem(R.id.app_bar_switch)
-            action = item!!.actionView
 
-            action?.findViewById<SwitchCompat>(R.id.switchDarkModeState)?.setOnCheckedChangeListener { btn, b ->
-                Log.d("my action view","actionview")
-                if (b){
-
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    viewModel.saveDarkModeState(true)
-                }else{
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    viewModel.saveDarkModeState(false)
-                }
-            }
             true
         }
 
