@@ -2,6 +2,7 @@ package com.example.liberary.View.Activities
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(ViewModel::class.java)
         viewModel.initContext(this)
         myIntent = Intent(this, WelcomeActivity::class.java)
-        lifecycleScope.launch(Dispatchers.Main){
+        lifecycleScope.launch{
             val prefs = viewModel.getPreferences().single()
             if (prefs.isDarkMode){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -46,6 +47,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+    }
+
 
 
     override fun attachBaseContext(newBase: Context?) {

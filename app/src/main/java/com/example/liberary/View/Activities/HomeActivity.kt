@@ -3,14 +3,18 @@ package com.example.liberary.View.Activities
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.ActionMenuView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -39,10 +43,10 @@ class HomeActivity : AppCompatActivity() {
     private val bundle = Bundle()
     private lateinit var toggle :ActionBarDrawerToggle
     private lateinit var viewModel:ViewModel
-    private lateinit var action: View
+    private  var action: View? = null
     private lateinit var drawerLayout:DrawerLayout
-    override fun onCreate(savedInstanceState: Bundle?) {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -60,32 +64,8 @@ class HomeActivity : AppCompatActivity() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.close()
         }
-        val item =  menu.findItem(R.id.app_bar_switch)
-         action = item!!.actionView
 
-
-
-        runBlocking {  action!!.findViewById<SwitchCompat>(R.id.switchDarkModeState)!!.isChecked = viewModel.getPreferences().single().isDarkMode }
-        action!!.findViewById<SwitchCompat>(R.id.switchDarkModeState)!!.setOnCheckedChangeListener { _, b ->
-            if (b){
-                //Log.d("on click called","called")
-                viewModel.saveDarkModeState(true)
-
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                drawerLayout.close()
-                //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
-            }else if(!b){
-               // Log.d("on click called","called")
-                viewModel.saveDarkModeState(false)
-
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                drawerLayout.close()
-                //supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-
-            }
-        }
+        runBlocking { action?.findViewById<SwitchCompat>(R.id.switchDarkModeState)!!.isChecked = viewModel.getPreferences().single().isDarkMode }
         navigationView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.changeLanguage -> {
@@ -102,17 +82,39 @@ class HomeActivity : AppCompatActivity() {
                     val myCutome = Intent(this@HomeActivity, HomeActivity::class.java)
 
                     myCutome.putExtras(intent)
-                    //Log.d("my item called","my item called")
+
                     startActivity(myCutome)
 
                 }
-                R.id.switchDarkModeState -> {
+                R.id.app_bar_switch -> {
+                    if (this.getSharedPreferences(Constants.sharedName,MODE_PRIVATE).getBoolean(Constants.darkMode,false)){
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        viewModel.saveDarkModeState(false)
+                    }else{
 
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        viewModel.saveDarkModeState(true)
+                    }
+                    runBlocking { action?.findViewById<SwitchCompat>(R.id.switchDarkModeState)!!.isChecked = viewModel.getPreferences().single().isDarkMode }
                 }
                 R.id.logout -> {
 
                     viewModel.clearAllData()
                     restartApp()
+                }
+            }
+            val item =  menu.findItem(R.id.app_bar_switch)
+            action = item!!.actionView
+
+            action?.findViewById<SwitchCompat>(R.id.switchDarkModeState)?.setOnCheckedChangeListener { btn, b ->
+                Log.d("my action view","actionview")
+                if (b){
+
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    viewModel.saveDarkModeState(true)
+                }else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    viewModel.saveDarkModeState(false)
                 }
             }
             true
@@ -143,7 +145,6 @@ class HomeActivity : AppCompatActivity() {
                             bundle.putSerializable(Constants.favorites,it)
                             favoriteFragment.arguments = bundle
                             replaceFragment(favoriteFragment)
-
                         }
                     }
                 }
@@ -159,22 +160,14 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+
     override fun attachBaseContext(newBase: Context?) {
         val sharedPreferences = newBase?.getSharedPreferences(Constants.sharedName,MODE_PRIVATE)
         val language = sharedPreferences?.getString(Constants.language, "en")
         super.attachBaseContext(newBase?.let { MyContextWrapper.wrap(it, language!!) })
-        val locale = Locale(language!!)
-        val resources = baseContext.resources
-        val conf = resources.configuration
-        conf.locale = locale
-        resources.updateConfiguration(conf, resources.displayMetrics)
+
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        action = View(this)
-        drawerLayout.close()
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(toggle.onOptionsItemSelected(item)){

@@ -18,12 +18,12 @@ class ViewModel:ViewModel() {
         shared = Shared(context)
     }
 
-    fun addToFavorite(course: Course): Flow<Boolean> {
+    suspend fun addToFavorite(course: Course): Flow<Boolean> {
         return  flow{
             emit(LocalModel.write(course).single())
         }
     }
-    fun getData():Flow<ArrayList<Course>> {
+    suspend fun getData():Flow<ArrayList<Course>> {
         return flow{
             LocalModel.getAll().collect {
                 emit(it)
@@ -34,12 +34,12 @@ class ViewModel:ViewModel() {
             removeAllShared()
             LocalModel.clearAll()
         }
-     fun getPreferences():Flow<Prefs>{
+    suspend fun getPreferences():Flow<Prefs>{
         return flow {
             emit(shared.getPrefrences().single())
         }
     }
-    fun saveToPreferences(language:String){
+     fun saveToPreferences(language:String){
         shared.savePrefrences(language)
     }
     fun saveDarkModeState(isDarkMode:Boolean){
@@ -48,7 +48,7 @@ class ViewModel:ViewModel() {
     private fun removeAllShared(){
         shared.removeAllShared()
     }
-    fun getOPendRecent():Flow<ArrayList<Course>> {
+    suspend fun getOPendRecent():Flow<ArrayList<Course>> {
         return flow {
             val recentOnly = ArrayList<Course>()
             getData().collect {
@@ -61,7 +61,7 @@ class ViewModel:ViewModel() {
         emit(recentOnly)
     }
     }
-    fun removeRecent(){
+    fun removeRecent() {
         LocalModel.removeRecent()
     }
 

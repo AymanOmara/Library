@@ -1,15 +1,18 @@
 package com.example.liberary.View.Activities
 
 
-import android.content.Intent
+import android.app.DownloadManager
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.webkit.CookieManager
 import android.webkit.URLUtil
 
 
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -20,7 +23,6 @@ import com.example.liberary.ViewModel.ViewModel
 import com.example.liberary.constants.Constants
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.net.URI
 
 
 class DetailsActivity : AppCompatActivity() {
@@ -33,7 +35,7 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var favorite:Button
     private lateinit var recentCourse:Course
     private lateinit var refrences:TextView
-
+    private lateinit var downloadManager:DownloadManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
@@ -41,13 +43,16 @@ class DetailsActivity : AppCompatActivity() {
         course = intent.getSerializableExtra(Constants.details) as Course
 
         refrences.setOnClickListener {
-            val openURL = Intent(Intent.ACTION_VIEW)
-            val url = refrences.text.toString()
+           // showAlert("start loading","....")
 
+            var url = refrences.text.toString()
+            url = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
             if(URLUtil.isValidUrl(url)) {
-                openURL.data = Uri.parse(url)
+                Log.d("my url","$url")
 
-                startActivity(openURL)
+
+
+                Toast.makeText(this,"downLoad start",Toast.LENGTH_LONG).show()
             }else{
                 showAlert(resources.getString(R.string.Error),resources.getString(R.string.notValidURL))
             }
