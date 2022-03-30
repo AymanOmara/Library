@@ -2,8 +2,10 @@ package com.example.liberary.View.Activities
 
 
 import android.app.DownloadManager
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
@@ -17,6 +19,7 @@ import com.example.liberary.R
 import com.example.liberary.ViewModel.ViewModel
 import com.example.liberary.constants.Constants
 import kotlinx.coroutines.launch
+import java.io.File
 
 
 class DetailsActivity : AppCompatActivity() {
@@ -30,6 +33,7 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var recentCourse:Course
     private lateinit var refrences:TextView
     private lateinit var manager:DownloadManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
@@ -40,24 +44,19 @@ class DetailsActivity : AppCompatActivity() {
 
             val uri =
                 Uri.parse("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf")
-            val request = DownloadManager.Request(uri)
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-            val reference: Long = manager.enqueue(request)
-            Toast.makeText(this,"start loading",Toast.LENGTH_LONG).show()
-            /*
-           // showAlert("start loading","....")
+            DownloadChecker()
+            /*val request = DownloadManager.Request(uri)
+                .setDestinationInExternalPublicDir(
+                    Environment.DIRECTORY_DOCUMENTS,"fileName.pdf")
+                .setAllowedOverRoaming(true)
+                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+*/
 
-            var url = refrences.text.toString()
-            url = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
-            if(URLUtil.isValidUrl(url)) {
-                Log.d("my url","$url")
+           // val reference: Long = manager.enqueue(request)
 
+           // Log.d("my url","${reference}")
+           // Toast.makeText(this,"start loading ${reference}",Toast.LENGTH_LONG).show()
 
-
-                Toast.makeText(this,"downLoad start",Toast.LENGTH_LONG).show()
-            }else{
-                showAlert(resources.getString(R.string.Error),resources.getString(R.string.notValidURL))
-            }*/
         }
         bindDataToView()
         LocalModel.context = this
@@ -86,6 +85,31 @@ class DetailsActivity : AppCompatActivity() {
         courseIntroduction.text = course.courseDescription
         coursePrerequest.text = course.preRequest
         refrences.text = course.refreces
+    }
+    fun DownloadChecker() {
+        val applictionFile = File(
+            Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOCUMENTS
+            ).toString() + "/" + "${course.courseName+courseID}.pdf"
+        )
+        if(applictionFile.isFile()) {
+            Toast.makeText(getApplicationContext(), "File Already Exists",
+                Toast.LENGTH_LONG).show();
+        }
+         else {
+            val servicestring: String = Context.DOWNLOAD_SERVICE
+            val downloadmanager: DownloadManager
+            downloadmanager = getSystemService(servicestring) as DownloadManager
+            val uri = Uri.parse(course.refreces)
+            val request = DownloadManager.Request(uri)
+            request.setDestinationInExternalFilesDir(
+                this@DetailsActivity,
+                Environment.DIRECTORY_DOWNLOADS, "${course.courseName+courseID}.pdf"
+            )
+
+            val reference = downloadmanager.enqueue(request)
+        }
+
     }
     private fun addCourse(course:Course){
         lifecycleScope.launch {
