@@ -18,6 +18,7 @@ import com.example.liberary.LocalModel.LocalModel
 import com.example.liberary.R
 import com.example.liberary.ViewModel.ViewModel
 import com.example.liberary.constants.Constants
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -65,7 +66,7 @@ class DetailsActivity : AppCompatActivity() {
 
         recentCourse.isRecent = true
         lifecycleScope.launch {
-            viewModel.addToFavorite(recentCourse)
+            viewModel.addToFavorite(recentCourse).collect{}
         }
         favorite.setOnClickListener {
                 addCourse(course)
