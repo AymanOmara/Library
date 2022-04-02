@@ -18,10 +18,11 @@ object LocalModel{
                 realm.beginTransaction()
                 realm.copyToRealm(course)
                 realm.commitTransaction()
+                Log.d("add recent data",realm.where(Course::class.java).findAll().size.toString())
 
                 emit(true)
             }else{
-                val isBefore = realm.where(Course::class.java).findAll().find { it.courseCode == course.courseCode && !it.isRecent}
+                val isBefore = realm.where(Course::class.java).findAll().find { it.courseCode == course.courseCode && !it.isRecent }
 
                 if (isBefore == null && !course.isRecent){
                     realm.beginTransaction()
@@ -40,7 +41,6 @@ object LocalModel{
             Realm.init(context)
             val realm = Realm.getDefaultInstance()
             val da = realm.where(Course::class.java).findAll()
-            Log.d("my tag","${da.size}")
             emit(ArrayList(realm.copyFromRealm(da)))
         }
     }
@@ -57,19 +57,11 @@ object LocalModel{
         var courses = realm.where(Course::class.java)
             .findAll()
             .filter { it.isRecent }
-
-        if (courses.size>1){
-            val course = courses.findLast {it.isRecent}
-            realm.beginTransaction()
-            course!!.deleteFromRealm()
-
-        }
-        //realm.executeTransaction { it -> }
-       // val obj = realm.where(Course::class.java).findAll().find { it.isRecent }
-
-        //
-       // obj?.deleteFromRealm()
-        realm.commitTransaction()
+            if (courses.size > 1){
+                realm.beginTransaction()
+                courses.last()?.deleteFromRealm()
+                realm.commitTransaction()
+            }
     }
 }
 

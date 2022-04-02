@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.liberary.Adapters.CoursesAdapter
@@ -18,6 +19,7 @@ import com.example.liberary.ViewModel.ViewModel
 import com.example.liberary.constants.Constants
 import com.example.liberary.constants.Constants.Companion.courses
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 
@@ -38,10 +40,12 @@ class RecentOpenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(this).get(ViewModel::class.java)
-        runBlocking {
+        lifecycleScope.launch {
             viewModel.getOPendRecent().collect{
-                courses = it
+                courses.clear()
+                courses.addAll(it)
                 Log.d("my data in open recent","${it.size}")
+                Log.d("my course array list","${courses.size}")
                 adapter = CoursesAdapter(it){ getPressesdItemIndex(it)}
             }
         }
@@ -53,7 +57,7 @@ class RecentOpenFragment : Fragment() {
         return view
     }
     private fun getPressesdItemIndex(index:Int){
-        moveToNewActivity(courses?.get(index)!!)
+        moveToNewActivity(courses.get(index))
     }
     private fun moveToNewActivity(withCourse: Course) {
         val i = Intent(activity, DetailsActivity::class.java)
@@ -63,13 +67,16 @@ class RecentOpenFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        runBlocking {
+        lifecycleScope.launch {
             viewModel.getOPendRecent().collect{
-                courses = it
+                courses.clear()
+                courses.addAll(it)
+                Log.d("my course array list in on resume","${courses.size}")
                 adapter = CoursesAdapter(it){ getPressesdItemIndex(it)}
+                adapter.notifyDataSetChanged()
             }
         }
-        adapter.notifyDataSetChanged()
+
     }
 
 }

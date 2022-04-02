@@ -66,7 +66,8 @@ class DetailsActivity : AppCompatActivity() {
 
         recentCourse.isRecent = true
         lifecycleScope.launch {
-            viewModel.addToFavorite(recentCourse).collect{}
+            viewModel.addToFavorite(recentCourse).collect{
+            }
         }
         favorite.setOnClickListener {
                 addCourse(course)
@@ -126,7 +127,6 @@ class DetailsActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        Log.d("did press back","")
         viewModel.removeRecent()
     }
     private fun showAlert(header:String, body:String){

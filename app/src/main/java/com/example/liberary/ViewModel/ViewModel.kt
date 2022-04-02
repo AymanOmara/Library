@@ -1,7 +1,5 @@
 package com.example.liberary.ViewModel
 
-
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import com.example.liberary.Course
@@ -27,7 +25,7 @@ class ViewModel:ViewModel() {
     suspend fun getData():Flow<ArrayList<Course>> {
         return flow{
             LocalModel.getAll().collect {
-                emit(it)
+            emit(it.filter { !it.isRecent } as ArrayList<Course>)
             }
         }
     }
@@ -51,23 +49,12 @@ class ViewModel:ViewModel() {
     }
     suspend fun getOPendRecent():Flow<ArrayList<Course>> {
         return flow {
-            val recentOnly = ArrayList<Course>()
-            getData().collect {
-                Log.d("get it count","${it.size}")
-                it.map {
-                    if(it.isRecent){
-
-                        recentOnly.add(it)
-                    }
+            LocalModel.getAll().collect {
+                emit(it.filter { it.isRecent } as ArrayList<Course>)
             }
-                emit(recentOnly)
         }
-
     }
-    }
-    fun removeRecent() {
+    fun removeRecent(){
         LocalModel.removeRecent()
     }
-
-
 }
