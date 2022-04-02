@@ -100,7 +100,6 @@ class HomeActivity : AppCompatActivity() {
                     restartApp()
                 }
             }
-
             true
         }
 
@@ -123,13 +122,13 @@ class HomeActivity : AppCompatActivity() {
                 }
                 1 -> {
 
-                    val favoriteFragment = FavoriteFragment()
+
                     lifecycleScope.launch {
-                        viewModel.getData().collect {
-                            bundle.putSerializable(Constants.favorites,it)
-                            favoriteFragment.arguments = bundle
-                            replaceFragment(favoriteFragment)
-                        }
+                        replaceFragment(FavoriteFragment())
+                        //viewModel.getData().collect {
+                            //bundle.putSerializable(Constants.favorites,it)
+                            //favoriteFragment.arguments = bundle
+
                     }
                 }
                 2 ->{
