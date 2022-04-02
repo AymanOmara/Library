@@ -49,7 +49,9 @@ class ViewModel:ViewModel() {
     }
     suspend fun getOPendRecent():Flow<ArrayList<Course>> {
         return flow {
+            val arrayList = ArrayList<Course>()
             LocalModel.getAll().collect {
+               // arrayList.add(it.filter { it.isRecent }.last())
                 emit(it.filter { it.isRecent } as ArrayList<Course>)
             }
         }

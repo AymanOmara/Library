@@ -57,7 +57,6 @@ object LocalModel{
         var courses = realm.where(Course::class.java)
             .findAll()
             .filter { it.isRecent }
-
                 realm.beginTransaction()
                 courses.last()?.deleteFromRealm()
                 realm.commitTransaction()

@@ -31,7 +31,7 @@ class WelcomeActivity : AppCompatActivity() {
     }
     fun setUpOnClickAction() {
         businessEnglishBtn?.setOnClickListener {
-            var courseArrayList:ArrayList<Course> =  arrayListOf(Course("machine learning", "info 401", "hello from description", "4", "my refrence","pre"), Course("stat401","stat401","hello from my descroption","my refrence ","l"," 401"))
+            var courseArrayList:ArrayList<Course> =  arrayListOf(Course("machine learning", "info 401", "hello from description", "4", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","pre"), Course("stat401","stat401","hello from my descroption","my refrence","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"," 401"))
             majors = arrayListOf(Major("Information systems", courseArrayList))
             myIntent?.putExtra(Constants.major,majors)
 

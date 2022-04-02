@@ -121,15 +121,7 @@ class HomeActivity : AppCompatActivity() {
                     replaceFragment(homeFragment)
                 }
                 1 -> {
-
-
-                    lifecycleScope.launch {
-                        replaceFragment(FavoriteFragment())
-                        //viewModel.getData().collect {
-                            //bundle.putSerializable(Constants.favorites,it)
-                            //favoriteFragment.arguments = bundle
-
-                    }
+                    replaceFragment(FavoriteFragment())
                 }
                 2 ->{
                     replaceFragment(RecentOpenFragment())

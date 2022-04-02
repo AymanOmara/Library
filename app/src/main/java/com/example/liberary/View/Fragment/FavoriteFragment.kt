@@ -18,7 +18,6 @@ import com.example.liberary.R
 import com.example.liberary.View.Activities.DetailsActivity
 import com.example.liberary.ViewModel.ViewModel
 import com.example.liberary.constants.Constants
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class FavoriteFragment : Fragment() {
@@ -59,7 +58,6 @@ class FavoriteFragment : Fragment() {
                 courses.addAll(it)
             }
         }
-        //courses = arguments?.get(Constants.favorites) as ArrayList<Course>
         if(courses.size == 0){
             animationView.alpha = 1f
             animationView.isEnabled = true

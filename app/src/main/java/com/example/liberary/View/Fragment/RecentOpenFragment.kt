@@ -28,13 +28,6 @@ class RecentOpenFragment : Fragment() {
     private lateinit var viewModel: ViewModel
     private var courses = ArrayList<Course>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,9 +36,9 @@ class RecentOpenFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.getOPendRecent().collect{
                 courses.clear()
-                courses.addAll(it)
-                Log.d("my data in open recent","${it.size}")
-                Log.d("my course array list","${courses.size}")
+                if (it.isNotEmpty()){
+                    courses.add(it.last())
+                }
                 adapter = CoursesAdapter(it){ getPressesdItemIndex(it)}
             }
         }
@@ -70,7 +63,10 @@ class RecentOpenFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.getOPendRecent().collect{
                 courses.clear()
-                courses.addAll(it)
+                if (it.isNotEmpty()){
+                    courses.add(it.last())
+                }
+
                 Log.d("my course array list in on resume","${courses.size}")
                 adapter = CoursesAdapter(it){ getPressesdItemIndex(it)}
                 adapter.notifyDataSetChanged()
