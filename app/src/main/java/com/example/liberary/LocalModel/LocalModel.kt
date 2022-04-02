@@ -24,7 +24,7 @@ object LocalModel{
             }else{
                 val isBefore = realm.where(Course::class.java).findAll().find { it.courseCode == course.courseCode && !it.isRecent }
 
-                if (isBefore == null && !course.isRecent){
+                if (isBefore == null && !course.isRecent ){
                     realm.beginTransaction()
                     realm.copyToRealm(course)
                     realm.commitTransaction()
@@ -57,11 +57,10 @@ object LocalModel{
         var courses = realm.where(Course::class.java)
             .findAll()
             .filter { it.isRecent }
-            if (courses.size > 1){
+
                 realm.beginTransaction()
                 courses.last()?.deleteFromRealm()
                 realm.commitTransaction()
-            }
     }
 }
 
