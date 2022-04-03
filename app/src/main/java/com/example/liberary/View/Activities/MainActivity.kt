@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
 
             }else if(!prefs.isDarkMode){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
             }
 
             delay(5000)

@@ -32,13 +32,14 @@ class RecentOpenFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         viewModel = ViewModelProvider(this).get(ViewModel::class.java)
+        //viewModel.removeAllRecentExceptLastItem()
         lifecycleScope.launch {
             viewModel.getOPendRecent().collect{
                 courses.clear()
-                if (it.isNotEmpty()){
-                    courses.add(it.last())
-                }
+                courses.addAll(it)
+
                 adapter = CoursesAdapter(it){ getPressesdItemIndex(it)}
             }
         }
@@ -61,11 +62,11 @@ class RecentOpenFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         lifecycleScope.launch {
+            viewModel.removeAllRecentExceptLastItem()
+
             viewModel.getOPendRecent().collect{
                 courses.clear()
-                if (it.isNotEmpty()){
-                    courses.add(it.last())
-                }
+                courses.addAll(it)
 
                 Log.d("my course array list in on resume","${courses.size}")
                 adapter = CoursesAdapter(it){ getPressesdItemIndex(it)}

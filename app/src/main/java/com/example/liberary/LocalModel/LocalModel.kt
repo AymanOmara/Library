@@ -61,5 +61,31 @@ object LocalModel{
                 courses.last()?.deleteFromRealm()
                 realm.commitTransaction()
     }
+    fun removeAllRecentExceptLastItem(){
+        Realm.init(context)
+        val realm = Realm.getDefaultInstance()
+         var lastCourse:Course
+        var courses = realm.where(Course::class.java)
+            .findAll()
+            .filter { it.isRecent }
+
+
+        if (courses.isNotEmpty()){
+            lastCourse = courses.last()
+
+            realm.beginTransaction()
+            courses.drop(courses.size-1)
+            courses.map {
+                it.deleteFromRealm()
+            }
+            realm.commitTransaction()
+
+            realm.beginTransaction()
+            realm.copyToRealm(lastCourse)
+            realm.commitTransaction()
+
+        }
+
+    }
 }
 

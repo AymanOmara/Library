@@ -24,9 +24,7 @@ class ViewModel:ViewModel() {
     }
     suspend fun getData():Flow<ArrayList<Course>> {
         return flow{
-            LocalModel.getAll().collect {
-            emit(it.filter { !it.isRecent } as ArrayList<Course>)
-            }
+            emit(LocalModel.getAll().single())
         }
     }
     fun clearAllData(){
@@ -49,14 +47,15 @@ class ViewModel:ViewModel() {
     }
     suspend fun getOPendRecent():Flow<ArrayList<Course>> {
         return flow {
-            val arrayList = ArrayList<Course>()
             LocalModel.getAll().collect {
-               // arrayList.add(it.filter { it.isRecent }.last())
                 emit(it.filter { it.isRecent } as ArrayList<Course>)
             }
         }
     }
     fun removeRecent(){
         LocalModel.removeRecent()
+    }
+    fun removeAllRecentExceptLastItem(){
+        LocalModel.removeAllRecentExceptLastItem()
     }
 }

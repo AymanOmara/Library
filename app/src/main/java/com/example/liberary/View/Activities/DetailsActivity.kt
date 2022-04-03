@@ -2,14 +2,12 @@ package com.example.liberary.View.Activities
 
 
 import android.app.DownloadManager
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.webkit.URLUtil
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +17,6 @@ import com.example.liberary.R
 import com.example.liberary.ViewModel.ViewModel
 import com.example.liberary.constants.Constants
 import kotlinx.coroutines.launch
-import java.io.File
 
 
 class DetailsActivity : AppCompatActivity() {
@@ -45,7 +42,7 @@ class DetailsActivity : AppCompatActivity() {
             if (URLUtil.isValidUrl(refrence)) {
                 val request = DownloadManager.Request(Uri.parse(refrence))
                     .setDestinationInExternalPublicDir(
-                        Environment.DIRECTORY_DOCUMENTS, "${course.courseName+course.courseCode}.pdf"
+                        Environment.DIRECTORY_DOCUMENTS, "${course.courseName+" "+course.courseCode}.pdf"
                     )
                     .setAllowedOverRoaming(true)
                     .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
@@ -87,33 +84,6 @@ class DetailsActivity : AppCompatActivity() {
         courseIntroduction.text = course.courseDescription
         coursePrerequest.text = course.preRequest
         refrences.text = course.refreces
-    }
-
-    fun DownloadChecker() {
-        val applictionFile = File(
-            Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOCUMENTS
-            ).toString() + "/" + "${course.courseName + courseID}.pdf"
-        )
-        if (applictionFile.isFile) {
-            Toast.makeText(
-                applicationContext, "File Already Exists",
-                Toast.LENGTH_LONG
-            ).show()
-        } else {
-            val servicestring: String = Context.DOWNLOAD_SERVICE
-            val downloadmanager: DownloadManager
-            downloadmanager = getSystemService(servicestring) as DownloadManager
-            val uri = Uri.parse(course.refreces)
-            val request = DownloadManager.Request(uri)
-            request.setDestinationInExternalFilesDir(
-                this@DetailsActivity,
-                Environment.DIRECTORY_DOWNLOADS, "${course.courseName + courseID}.pdf"
-            )
-
-            val reference = downloadmanager.enqueue(request)
-        }
-
     }
 
     private fun addCourse(course: Course) {
