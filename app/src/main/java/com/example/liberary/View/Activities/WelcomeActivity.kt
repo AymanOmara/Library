@@ -39,7 +39,7 @@ class WelcomeActivity : AppCompatActivity() {
 
             startActivity(myIntent)
         }
-        businessArabicBtn?.setOnClickListener {
+        businessArabicBtn.setOnClickListener {
 
             //startActivity(myIntent)
         }
