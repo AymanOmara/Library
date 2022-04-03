@@ -12,9 +12,9 @@ import kotlinx.coroutines.flow.flow
 
 class Shared(var context: AppCompatActivity) {
     private val sharedPreference=this.context.getSharedPreferences(Constants.sharedName, Context.MODE_PRIVATE)
-    private val editor:SharedPreferences.Editor = sharedPreference.edit()
+    private val editor = sharedPreference.edit()
 
-    fun savePrefrences(language:String){
+    fun saveLanguage(language:String){
         editor.putString(Constants.language,language)
         editor.commit()
     }

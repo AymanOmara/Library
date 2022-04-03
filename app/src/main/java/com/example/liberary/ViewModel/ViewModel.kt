@@ -37,7 +37,7 @@ class ViewModel:ViewModel() {
         }
     }
      fun saveToPreferences(language:String){
-        shared.savePrefrences(language)
+        shared.saveLanguage(language)
     }
     fun saveDarkModeState(isDarkMode:Boolean){
         shared.saveDarkMode(isDarkMode)

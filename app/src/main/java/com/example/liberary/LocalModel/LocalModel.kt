@@ -41,6 +41,7 @@ object LocalModel{
             Realm.init(context)
             val realm = Realm.getDefaultInstance()
             val da = realm.where(Course::class.java).findAll()
+
             emit(ArrayList(realm.copyFromRealm(da)))
         }
     }
@@ -85,7 +86,6 @@ object LocalModel{
             realm.commitTransaction()
 
         }
-
     }
 }
 

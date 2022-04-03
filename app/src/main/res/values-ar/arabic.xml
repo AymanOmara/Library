@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">مكتبة</string>
+    <string name="app_name">Must Business knowledge Base</string>
     <string name="introduction">تحتوي المكتبة على معلومات مهمة حول كلية إدارة الأعمال لجميع التخصصات والمستويات المختلفة. حيث يمكن للمستخدم البحث عن التخصص ، ثم الدورة لمعرفة كل تفاصيل الدورة وأيضًا معرفة مرجع الدورة ، مما يجعله على دراية كافية بالمقرر.</string>
     <string name="businessEnglishBtn">Business English</string>
     <string name="BusinessArabic">Business Arabic</string>
