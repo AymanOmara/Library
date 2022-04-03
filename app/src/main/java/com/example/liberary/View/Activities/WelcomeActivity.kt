@@ -10,10 +10,10 @@ import com.example.liberary.R
 import com.example.liberary.constants.Constants
 
 class WelcomeActivity : AppCompatActivity() {
-    private var businessEnglishBtn : Button? = null
-    private var businessArabicBtn : Button? = null
-    private var myIntent : Intent? = null
-    private var majors:ArrayList<Major>? = null
+    private lateinit var businessEnglishBtn : Button
+    private lateinit var businessArabicBtn : Button
+    private lateinit var myIntent : Intent
+    private lateinit var majors:ArrayList<Major>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
