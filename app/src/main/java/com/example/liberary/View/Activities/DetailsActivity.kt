@@ -5,6 +5,7 @@ import android.app.DownloadManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.webkit.URLUtil
 import android.widget.Button
 import android.widget.TextView
@@ -36,9 +37,11 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_details)
         findViewByid()
         course = intent.getSerializableExtra(Constants.details) as Course
+        bindDataToView()
         manager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
         refrences.setOnClickListener {
             val refrence = refrences.text.toString()
+
             if (URLUtil.isValidUrl(refrence)) {
                 val request = DownloadManager.Request(Uri.parse(refrence))
                      .setDestinationInExternalPublicDir(
@@ -55,7 +58,7 @@ class DetailsActivity : AppCompatActivity() {
                 )
             }
         }
-        bindDataToView()
+
         LocalModel.context = this
 
         recentCourse = course.clone()
@@ -85,6 +88,8 @@ class DetailsActivity : AppCompatActivity() {
         courseIntroduction.text = course.courseDescription
         coursePrerequest.text = course.preRequest
         refrences.text = course.refreces
+        Log.d("refrences inside course obj", course.refreces)
+        Log.d("refrences","${refrences.text}")
     }
 
     private fun addCourse(course: Course) {
