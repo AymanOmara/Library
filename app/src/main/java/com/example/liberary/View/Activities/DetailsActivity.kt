@@ -41,7 +41,7 @@ class DetailsActivity : AppCompatActivity() {
             val refrence = refrences.text.toString()
             if (URLUtil.isValidUrl(refrence)) {
                 val request = DownloadManager.Request(Uri.parse(refrence))
-                    .setDestinationInExternalPublicDir(
+                     .setDestinationInExternalPublicDir(
                       Environment.DIRECTORY_DOWNLOADS, "${course.courseName+" "+course.courseCode}.pdf"
                     )
                     .setDestinationInExternalFilesDir(this,Environment.DIRECTORY_DOWNLOADS,"no")
