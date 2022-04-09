@@ -42,8 +42,9 @@ class DetailsActivity : AppCompatActivity() {
             if (URLUtil.isValidUrl(refrence)) {
                 val request = DownloadManager.Request(Uri.parse(refrence))
                     .setDestinationInExternalPublicDir(
-                        Environment.DIRECTORY_DOCUMENTS, "${course.courseName+" "+course.courseCode}.pdf"
+                      Environment.DIRECTORY_DOWNLOADS, "${course.courseName+" "+course.courseCode}.pdf"
                     )
+                    .setDestinationInExternalFilesDir(this,Environment.DIRECTORY_DOWNLOADS,"no")
                     .setAllowedOverRoaming(true)
                     .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
                     manager.enqueue(request)
