@@ -76,7 +76,7 @@ class DetailsActivity : AppCompatActivity() {
         LocalModel.context = this
 
         recentCourse = course.clone()
-
+        course.isRecent = false
         recentCourse.isRecent = true
         lifecycleScope.launch {
             viewModel.addToFavorite(recentCourse).collect {
