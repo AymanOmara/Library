@@ -5,6 +5,7 @@ import android.app.DownloadManager
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.webkit.URLUtil
 import android.widget.Button
@@ -46,11 +47,14 @@ class DetailsActivity : AppCompatActivity() {
 
             if (URLUtil.isValidUrl(refrence)) {
                 manager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-                val uri =
-                    Uri.parse("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf")
+                val uri = Uri.parse(course.refreces)
                 val request = DownloadManager.Request(uri)
                     .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-                //request.
+                    .setDestinationInExternalPublicDir(
+                        Environment.DIRECTORY_DOWNLOADS, "${course.courseName+" "+course.courseCode}.pdf"
+                    )
+                    .setAllowedOverRoaming(true)
+
                 manager.enqueue(request)
 
                 Toast.makeText(this,"start loading",Toast.LENGTH_LONG).show()
