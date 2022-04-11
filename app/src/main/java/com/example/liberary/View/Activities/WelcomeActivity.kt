@@ -23,7 +23,6 @@ class WelcomeActivity : AppCompatActivity() {
         supportActionBar?.hide()
         findView()
         setUpOnClickAction()
-
     }
     fun findView(){
         businessEnglishBtn = findViewById(R.id.businessEnglishbtn)

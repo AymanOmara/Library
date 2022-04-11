@@ -34,6 +34,7 @@ open class Course(): RealmObject(),Serializable,Cloneable{
         course.courseDescription = courseDescription
         course.level = level
         course.preRequest = preRequest
+        course.refreces = refreces
         return course
     }
     }

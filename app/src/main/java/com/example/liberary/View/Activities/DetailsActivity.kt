@@ -2,12 +2,15 @@ package com.example.liberary.View.Activities
 
 
 import android.app.DownloadManager
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.webkit.URLUtil
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -31,22 +34,41 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var refrences: TextView
     private lateinit var manager: DownloadManager
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
         findViewByid()
         course = intent.getSerializableExtra(Constants.details) as Course
-        manager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+        bindDataToView()
+        //manager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
         refrences.setOnClickListener {
             val refrence = refrences.text.toString()
+
             if (URLUtil.isValidUrl(refrence)) {
-                val request = DownloadManager.Request(Uri.parse(refrence))
+                manager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                val uri = Uri.parse(course.refreces)
+                val request = DownloadManager.Request(uri)
+                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
                     .setDestinationInExternalPublicDir(
-                        Environment.DIRECTORY_DOCUMENTS, "${course.courseName+" "+course.courseCode}.pdf"
+                        Environment.DIRECTORY_DOWNLOADS, "${course.courseName+" "+course.courseCode}.pdf"
                     )
                     .setAllowedOverRoaming(true)
+
+                manager.enqueue(request)
+
+                Toast.makeText(this,"start loading",Toast.LENGTH_LONG).show()
+
+                    //.uri("content://com.example.app/documents/example.pdf")
+
+                /*val request = DownloadManager.Request(Uri.parse(refrence))
+                     .setDestinationInExternalPublicDir(
+                      Environment.DIRECTORY_DOWNLOADS, "${course.courseName+" "+course.courseCode}.pdf"
+                    )
+                    .setDestinationInExternalFilesDir(this,Environment.DIRECTORY_DOWNLOADS,"no")
+                    .setAllowedOverRoaming(true)
                     .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-                    manager.enqueue(request)
+                    manager.enqueue(request)*/
             } else {
                 showAlert(
                     resources.getString(R.string.Error),
@@ -54,11 +76,11 @@ class DetailsActivity : AppCompatActivity() {
                 )
             }
         }
-        bindDataToView()
+
         LocalModel.context = this
 
         recentCourse = course.clone()
-
+        course.isRecent = false
         recentCourse.isRecent = true
         lifecycleScope.launch {
             viewModel.addToFavorite(recentCourse).collect {

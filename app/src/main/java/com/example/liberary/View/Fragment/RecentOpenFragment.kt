@@ -34,7 +34,7 @@ class RecentOpenFragment : Fragment() {
     ): View? {
 
         viewModel = ViewModelProvider(this).get(ViewModel::class.java)
-        //viewModel.removeAllRecentExceptLastItem()
+
         lifecycleScope.launch {
             viewModel.getOPendRecent().collect{
                 courses.clear()
@@ -51,7 +51,9 @@ class RecentOpenFragment : Fragment() {
         return view
     }
     private fun getPressesdItemIndex(index:Int){
-        moveToNewActivity(courses.get(index))
+        Log.d("my last obj in the recent", courses[index].refreces)
+
+        moveToNewActivity(courses[index])
     }
     private fun moveToNewActivity(withCourse: Course) {
         val i = Intent(activity, DetailsActivity::class.java)
