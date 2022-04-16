@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Must Business knowledge Base</string>
-    <string name="introduction">The library contains important information about the College of Business for all Majors and different levels.  Where the user can search for the major, then the course to know all details of the course and also know the reference of the course, which makes him familiar enough with the course.</string>
+    <string name="introduction">
+        Must Business Knowledge Base contain important information about the college of business for all majors and different levels. Where the user can search for the major, then the course to know all details of the courses such as the name of the course, prerequisite, and level and know the reference of the course, which makes him familiar enough with the course.
+    </string>
     <string name="businessEnglishBtn">Business English</string>
     <string name="BusinessArabic">Business Arabic</string>
 
