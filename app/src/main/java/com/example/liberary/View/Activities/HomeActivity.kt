@@ -35,11 +35,11 @@ import java.util.*
 
 
 class HomeActivity : AppCompatActivity() {
-    private var courses: ArrayList<Course>? = null
+    private lateinit var courses: ArrayList<Course>
     private val bundle = Bundle()
     private lateinit var toggle :ActionBarDrawerToggle
     private lateinit var viewModel:ViewModel
-    private  var action: View? = null
+    private lateinit var action: View
     private lateinit var drawerLayout:DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -108,14 +108,14 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.favoriteicon))
         bottomNavigation.add(MeowBottomNavigation.Model(2, R.drawable.recenticon))
 
-        courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>?
+        courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>
 
 
         bottomNavigation.setOnClickMenuListener { meow ->
             when (meow.id){
                 0 -> {
                     val homeFragment = HomeFragment()
-                    courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>?
+                    courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>
                     bundle.putSerializable(Constants.homeCourses,courses)
                     homeFragment.arguments = bundle
                     replaceFragment(homeFragment)
