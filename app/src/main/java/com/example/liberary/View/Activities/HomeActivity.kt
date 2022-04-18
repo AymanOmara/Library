@@ -62,7 +62,7 @@ class HomeActivity : AppCompatActivity() {
         }
         val item =  menu.findItem(R.id.app_bar_switch)
         action = item!!.actionView
-        runBlocking { action?.findViewById<SwitchCompat>(R.id.switchDarkModeState)!!.isChecked = viewModel.getPreferences().single().isDarkMode }
+        runBlocking { action.findViewById<SwitchCompat>(R.id.switchDarkModeState).isChecked = viewModel.getPreferences().single().isDarkMode }
         navigationView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.changeLanguage -> {
@@ -92,7 +92,7 @@ class HomeActivity : AppCompatActivity() {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                         viewModel.saveDarkModeState(true)
                     }
-                    runBlocking { action?.findViewById<SwitchCompat>(R.id.switchDarkModeState)!!.isChecked = viewModel.getPreferences().single().isDarkMode }
+                    runBlocking { action.findViewById<SwitchCompat>(R.id.switchDarkModeState).isChecked = viewModel.getPreferences().single().isDarkMode }
                 }
                 R.id.logout -> {
 
@@ -115,10 +115,9 @@ class HomeActivity : AppCompatActivity() {
             when (meow.id){
                 0 -> {
                     val homeFragment = HomeFragment()
-                    courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>
-                    bundle.putSerializable(Constants.homeCourses,courses)
-                    homeFragment.arguments = bundle
-                    replaceFragment(homeFragment)
+                    //courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>
+
+                    replaceFragment(constructFragmentWithCourses())
                 }
                 1 -> {
                     replaceFragment(FavoriteFragment())
@@ -128,13 +127,17 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         }
-        val homeFragment = HomeFragment()
-        bundle.putSerializable(Constants.homeCourses,courses)
-        homeFragment.arguments = bundle
-        replaceFragment(homeFragment)
+
+        replaceFragment(constructFragmentWithCourses())
 
     }
 
+    private fun constructFragmentWithCourses():Fragment{
+        val homeFragment = HomeFragment()
+        bundle.putSerializable(Constants.homeCourses,courses)
+        homeFragment.arguments = bundle
+        return  homeFragment
+    }
 
     override fun attachBaseContext(newBase: Context?) {
         val sharedPreferences = newBase?.getSharedPreferences(Constants.sharedName,MODE_PRIVATE)
