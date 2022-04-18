@@ -10,7 +10,7 @@ import com.example.liberary.R
 
 class CoursesAdapter(private var itemList: ArrayList<Course>, private val onItemClicked: (position: Int) -> Unit): RecyclerView.Adapter<CoursesAdapter.MyViewHolder>()  {
     class MyViewHolder(view: View, private val onItemClicked: (position: Int) -> Unit):RecyclerView.ViewHolder(view), View.OnClickListener{
-        var courseCode: TextView = view.findViewById(R.id.courseCode)
+        var courseCode: TextView = view.findViewById(R.id.majorName)
 
         init {
             itemView.setOnClickListener(this)
@@ -24,7 +24,7 @@ class CoursesAdapter(private var itemList: ArrayList<Course>, private val onItem
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.courserecyclerviewitem, parent, false)
+                .inflate(R.layout.majoritem, parent, false)
         return MyViewHolder(itemView, onItemClicked)
     }
 
