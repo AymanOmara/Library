@@ -21,7 +21,7 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-    private var myIntent : Intent? = null
+    private lateinit var myIntent : Intent
     private lateinit var viewModel: ViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
