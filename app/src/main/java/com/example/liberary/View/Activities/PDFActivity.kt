@@ -2,35 +2,30 @@ package com.example.liberary.View.Activities
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log
-
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.liberary.R
-
+import com.example.liberary.constants.Constants
 import com.github.barteksc.pdfviewer.PDFView;
-
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection
-
-import javax.net.ssl.HttpsURLConnection;
 
 class PDFActivity : AppCompatActivity(), Connector {
     lateinit  var pdfView: PDFView
-    var pdfurl = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+    lateinit var pdfurl:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pdfactivity)
+        pdfurl = intent.getStringExtra(Constants.reference)!!
         pdfView = findViewById(R.id.idPDFView);
         val asyncTask = RetrivePDFfromUrl(pdfurl)
         asyncTask.execute(pdfurl)
         asyncTask.delagate = this
 
     }
-    class RetrivePDFfromUrl(var pdfurl:String): AsyncTask<String, Void, InputStream>() {
+    class RetrivePDFfromUrl(private var pdfurl:String): AsyncTask<String, Void, InputStream>() {
         var delagate:Connector? = null
         var inputStream: InputStream? = null
         override fun doInBackground(vararg p0: String?): InputStream? {

@@ -1,13 +1,9 @@
 package com.example.liberary.View.Activities
 
 
-import android.app.DownloadManager
-import android.content.Context
+
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import android.util.Log
 import android.webkit.URLUtil
 import android.widget.Button
 import android.widget.TextView
@@ -33,7 +29,6 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var favorite: Button
     private lateinit var recentCourse: Course
     private lateinit var refrences: TextView
-    private lateinit var manager: DownloadManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,36 +37,18 @@ class DetailsActivity : AppCompatActivity() {
         findViewByid()
         course = intent.getSerializableExtra(Constants.details) as Course
         bindDataToView()
-        //manager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+
         refrences.setOnClickListener {
-            val pdfIntent = Intent(this@DetailsActivity,PDFActivity::class.java)
-            startActivity(pdfIntent)
+
             val refrence = refrences.text.toString()
 
             if (URLUtil.isValidUrl(refrence)) {
-             /*   manager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-                val uri = Uri.parse(course.refreces)
-                val request = DownloadManager.Request(uri)
-                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-                    .setDestinationInExternalPublicDir(
-                        Environment.DIRECTORY_DOWNLOADS, "${course.courseName+" "+course.courseCode}.pdf"
-                    )
-                    .setAllowedOverRoaming(true)
+                val pdfIntent = Intent(this@DetailsActivity,PDFActivity::class.java)
+                pdfIntent.putExtra(Constants.reference,refrence)
+                startActivity(pdfIntent)
 
-                manager.enqueue(request)*/
 
                 Toast.makeText(this,"start loading",Toast.LENGTH_LONG).show()
-
-                    //.uri("content://com.example.app/documents/example.pdf")
-
-                /*val request = DownloadManager.Request(Uri.parse(refrence))
-                     .setDestinationInExternalPublicDir(
-                      Environment.DIRECTORY_DOWNLOADS, "${course.courseName+" "+course.courseCode}.pdf"
-                    )
-                    .setDestinationInExternalFilesDir(this,Environment.DIRECTORY_DOWNLOADS,"no")
-                    .setAllowedOverRoaming(true)
-                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-                    manager.enqueue(request)*/
             } else {
                 showAlert(
                     resources.getString(R.string.Error),
