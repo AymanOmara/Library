@@ -3,6 +3,7 @@ package com.example.liberary.View.Activities
 
 import android.app.DownloadManager
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -43,10 +44,12 @@ class DetailsActivity : AppCompatActivity() {
         bindDataToView()
         //manager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
         refrences.setOnClickListener {
+            val pdfIntent = Intent(this@DetailsActivity,PDFActivity::class.java)
+            startActivity(pdfIntent)
             val refrence = refrences.text.toString()
 
             if (URLUtil.isValidUrl(refrence)) {
-                manager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+             /*   manager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
                 val uri = Uri.parse(course.refreces)
                 val request = DownloadManager.Request(uri)
                     .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
@@ -55,7 +58,7 @@ class DetailsActivity : AppCompatActivity() {
                     )
                     .setAllowedOverRoaming(true)
 
-                manager.enqueue(request)
+                manager.enqueue(request)*/
 
                 Toast.makeText(this,"start loading",Toast.LENGTH_LONG).show()
 
