@@ -15,6 +15,7 @@ class WelcomeActivity : AppCompatActivity() {
     private lateinit var adapter:FacultiesAdapter
     private lateinit var myIntent : Intent
     private lateinit var majors:ArrayList<Major>
+    private lateinit var faculties:ArrayList<Faculty>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,7 @@ class WelcomeActivity : AppCompatActivity() {
     }
     fun findView(){
         recyclerView = findViewById(R.id.faculties_rv)
-        val faculties:ArrayList<Faculty> = arrayListOf(Faculty("Bussiness Arabic", arrayListOf(
+         faculties = arrayListOf(Faculty("Bussiness Arabic", arrayListOf(
             Major("information system",
                 arrayListOf(Course("info 401","401","hello","four","https","my pre")))
         )),Faculty("Bussiness Arabic", arrayListOf(
@@ -73,10 +74,16 @@ class WelcomeActivity : AppCompatActivity() {
             Major("information system",
                 arrayListOf(Course("info 401","401","hello","four","https","my pre")))
         )))
-        adapter = FacultiesAdapter(faculties){ }
+        adapter = FacultiesAdapter(faculties){ getSelectedIndex(it)}
         recyclerView.adapter = adapter
         recyclerView.layoutManager = GridLayoutManager(this,2)
         adapter.notifyDataSetChanged()
+    }
+    fun getSelectedIndex(index:Int){
+        myIntent.putExtra(Constants.major,faculties[index].majors)
+
+
+        startActivity(myIntent)
     }
     fun setUpOnClickAction() {
         /*businessEnglishBtn.setOnClickListener {

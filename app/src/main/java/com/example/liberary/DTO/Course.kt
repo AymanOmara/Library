@@ -2,12 +2,8 @@ package com.example.liberary
 
 
 import io.realm.*
-import io.realm.annotations.PrimaryKey
-import io.realm.kotlin.where
 import java.io.Serializable
-import java.util.*
 import kotlin.collections.ArrayList
-//data class Faculties(val faculties:ArrayList<Faculty>):Serializable
 data class Faculty(val FacultyName:String, val majors:ArrayList<Major>):Serializable
 
 data class Major(val majorName:String,val courses: ArrayList<Course>):Serializable
