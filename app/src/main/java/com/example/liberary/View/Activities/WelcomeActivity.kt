@@ -29,7 +29,7 @@ class WelcomeActivity : AppCompatActivity() {
 
     fun findView(){
         recyclerView = findViewById(R.id.faculties_rv)
-         faculties = arrayListOf(Faculty("Business English",R.drawable.testimge ,arrayListOf(
+         faculties = arrayListOf(Faculty("Business English",R.drawable.secondtest ,arrayListOf(
              Major("Information systems", arrayListOf(Course("Principles of Mathematics ", "MATH 101", "hello from description", "1", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","pre"),
                  Course("Financial Mathematics","MATH 201","hello from my descroption","2","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"," 401"),
                  Course("Descriptive Statistics","STS 201","hello from dec","2","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","401 , 406 ,407"),
@@ -109,7 +109,44 @@ class WelcomeActivity : AppCompatActivity() {
          ,
              Major("Principles of Management",arrayListOf(Course("Principles of Management","BUS 101","jdhdj","1","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","NONE")))
          )
+         ), Faculty(" Medicine",R.drawable.secondtest, arrayListOf(
+             Major("",
+                 arrayListOf())
+         )), Faculty("Dentistry",R.drawable.secondtest, arrayListOf(
+             Major("",
+                 arrayListOf())
+         )), Faculty("Pharmacy",R.drawable.secondtest, arrayListOf(
+             Major("",
+                 arrayListOf())
+         )),Faculty("Physical therapy",R.drawable.secondtest, arrayListOf(
+             Major("",
+                 arrayListOf())
+         )),Faculty("Biotechnology",R.drawable.secondtest, arrayListOf(
+             Major("",
+                 arrayListOf())
+         )),Faculty("Mass communication",R.drawable.secondtest, arrayListOf(
+             Major("",
+                 arrayListOf())
+         )),Faculty("Foreign Languages",R.drawable.secondtest, arrayListOf(
+             Major("",
+                 arrayListOf())
+         )),Faculty("IT",R.drawable.secondtest, arrayListOf(
+             Major("",
+                 arrayListOf())
+         )),Faculty("Applied Medical Sciences",R.drawable.secondtest, arrayListOf(
+             Major("",
+                 arrayListOf())
+         )),Faculty("Archeology and Tourist Guidance",R.drawable.secondtest, arrayListOf(
+             Major("",
+                 arrayListOf())
+         )),Faculty("Special Education",R.drawable.secondtest, arrayListOf(
+             Major("",
+                 arrayListOf())
+         )),Faculty("Engineering",R.drawable.secondtest, arrayListOf(
+             Major("",
+                 arrayListOf())
          ))
+         )
         adapter = FacultiesAdapter(faculties){ getSelectedIndex(it)}
         recyclerView.adapter = adapter
         recyclerView.layoutManager = GridLayoutManager(this,2)
