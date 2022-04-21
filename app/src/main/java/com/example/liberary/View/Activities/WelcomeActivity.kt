@@ -29,7 +29,7 @@ class WelcomeActivity : AppCompatActivity() {
 
     fun findView(){
         recyclerView = findViewById(R.id.faculties_rv)
-         faculties = arrayListOf(Faculty("Business English",R.drawable.secondtest ,arrayListOf(
+         faculties = arrayListOf(Faculty("Business English",R.drawable.business ,arrayListOf(
              Major("Information systems", arrayListOf(Course("Principles of Mathematics ", "MATH 101", "hello from description", "1", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","pre"),
                  Course("Financial Mathematics","MATH 201","hello from my descroption","2","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"," 401"),
                  Course("Descriptive Statistics","STS 201","hello from dec","2","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","401 , 406 ,407"),
