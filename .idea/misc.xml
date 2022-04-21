@@ -3,16 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/20106/Desktop/New folder (3)/Library/app/src/main/res/layout/activity_details.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/drawable/favoriteicon.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/homeicon.xml" value="0.1965" />
         <entry key="app/src/main/res/drawable/languageicon.xml" value="0.278" />
         <entry key="app/src/main/res/drawable/logouticon.xml" value="0.278" />
         <entry key="app/src/main/res/drawable/must_logo_web_min.xml" value="0.278" />
         <entry key="app/src/main/res/drawable/recenticon.xml" value="0.178" />
-        <entry key="app/src/main/res/layout/activity_details.xml" value="0.3843490600585938" />
+        <entry key="app/src/main/res/layout/activity_details.xml" value="0.2785552978515625" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.14402173913043478" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2629241943359375" />
-        <entry key="app/src/main/res/layout/activity_pdfactivity.xml" value="0.17572463768115942" />
         <entry key="app/src/main/res/layout/activity_welcome.xml" value="0.13333333333333333" />
         <entry key="app/src/main/res/layout/courserecyclerviewitem.xml" value="0.48456891930621604" />
         <entry key="app/src/main/res/layout/faculty_rv_item.xml" value="0.17572463768115942" />

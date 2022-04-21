@@ -109,40 +109,40 @@ class WelcomeActivity : AppCompatActivity() {
          ,
              Major("Principles of Management",arrayListOf(Course("Principles of Management","BUS 101","jdhdj","1","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","NONE")))
          )
-         ), Faculty(" Medicine",R.drawable.secondtest, arrayListOf(
+         ), Faculty(" Medicine",R.drawable.medicine, arrayListOf(
              Major("",
                  arrayListOf())
-         )), Faculty("Dentistry",R.drawable.secondtest, arrayListOf(
+         )), Faculty("Dentistry",R.drawable.dentistry, arrayListOf(
              Major("",
                  arrayListOf())
-         )), Faculty("Pharmacy",R.drawable.secondtest, arrayListOf(
+         )), Faculty("Pharmacy",R.drawable.pharmacy, arrayListOf(
              Major("",
                  arrayListOf())
-         )),Faculty("Physical therapy",R.drawable.secondtest, arrayListOf(
+         )),Faculty("Physical Therapy",R.drawable.physicaltherapy, arrayListOf(
              Major("",
                  arrayListOf())
-         )),Faculty("Biotechnology",R.drawable.secondtest, arrayListOf(
+         )),Faculty("Biotechnology",R.drawable.biotechnology, arrayListOf(
              Major("",
                  arrayListOf())
-         )),Faculty("Mass communication",R.drawable.secondtest, arrayListOf(
+         )),Faculty("Mass communication",R.drawable.mass, arrayListOf(
              Major("",
                  arrayListOf())
-         )),Faculty("Foreign Languages",R.drawable.secondtest, arrayListOf(
+         )),Faculty("Foreign Languages",R.drawable.foregin, arrayListOf(
              Major("",
                  arrayListOf())
-         )),Faculty("IT",R.drawable.secondtest, arrayListOf(
+         )),Faculty("IT",R.drawable.computersciemce, arrayListOf(
              Major("",
                  arrayListOf())
-         )),Faculty("Applied Medical Sciences",R.drawable.secondtest, arrayListOf(
+         )),Faculty("Applied Medical Sciences",R.drawable.applied, arrayListOf(
              Major("",
                  arrayListOf())
-         )),Faculty("Archeology and Tourist Guidance",R.drawable.secondtest, arrayListOf(
+         )),Faculty("Archeology and Tourist Guidance",R.drawable.tourist, arrayListOf(
              Major("",
                  arrayListOf())
-         )),Faculty("Special Education",R.drawable.secondtest, arrayListOf(
+         )),Faculty("Special Education",R.drawable.specialeducation, arrayListOf(
              Major("",
                  arrayListOf())
-         )),Faculty("Engineering",R.drawable.secondtest, arrayListOf(
+         )),Faculty("Engineering",R.drawable.engineer, arrayListOf(
              Major("",
                  arrayListOf())
          ))
