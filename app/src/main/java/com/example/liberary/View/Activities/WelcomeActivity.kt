@@ -49,7 +49,7 @@ class WelcomeActivity : AppCompatActivity() {
                  Course("DataBases System Problems","INF 405","hello from my descroption","4","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"," 401"),
                  Course("Medical Information Systems","INF 406","hello from my descroption","4","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"," 401"),
                  Course("Advanced Information System","INF 407","hello from my descroption","4","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"," 401")))
-         , Major("finance",arrayListOf(Course("Financial Markets Theory","FIN 301","jdhdj","3","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","ECO 201"),
+         , Major("Finance",arrayListOf(Course("Financial Markets Theory","FIN 301","jdhdj","3","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","ECO 201"),
                  Course("Securities Intermediates","FIN 302","jdhdj","3","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","ECO 201,ACC 202"),
                  Course("Portfolio Management","FIN 303","jdhdj","3","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","ECO 201,ACC 202,MATH 201"),
                  Course("Monetary & Banking Policies","FIN 304","jdhdj","3","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","ECO 201,ACC 202,MATH 201"),
@@ -66,7 +66,7 @@ class WelcomeActivity : AppCompatActivity() {
                  Course("Quantitative Methods in Banks & Portfolio","FIN 409","jdhdj","4","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","FIN 303,FIN 304,STS 201"),
                  Course("Financial Policies for Institutions","FIN 413","jdhdj","4","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","BUS 304")
              ))
-         , Major("accounting",arrayListOf(Course("Principles of Accounting","ACC 101","hello","1","hjfgs","NONE"),
+         , Major("Accounting",arrayListOf(Course("Principles of Accounting","ACC 101","hello","1","hjfgs","NONE"),
                  Course("Financial Accounting","ACC 102","hello from my descroption","1","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","ACC 101"),
                  Course("Partnership Accounting","ACC 201","hello from dec","2","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","ACC 102"),
                  Course("Corporations Accounting","ACC 202","hello from my descroption","2","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","ACC 102"),
@@ -107,7 +107,7 @@ class WelcomeActivity : AppCompatActivity() {
                  Course("Operations Research in Management","BUS 408","jdhdj","3","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","ECO 201"),
                  Course("Multinational Corporation Management","BUS 409","jdhdj","3","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","ECO 201")))
          ,
-             Major("Principles of Management",arrayListOf(Course("Principles of Management","BUS 101","jdhdj","1","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","NONE")))
+             Major("Management",arrayListOf(Course("Principles of Management","BUS 101","jdhdj","1","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","NONE")))
          )
          ), Faculty(" Medicine",R.drawable.medicine, arrayListOf(
              Major("",
