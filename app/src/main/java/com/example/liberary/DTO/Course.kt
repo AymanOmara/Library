@@ -4,7 +4,7 @@ package com.example.liberary
 import io.realm.*
 import java.io.Serializable
 import kotlin.collections.ArrayList
-data class Faculty(val FacultyName:String, val majors:ArrayList<Major>):Serializable
+data class Faculty(val FacultyName:String,val image:Int, val majors:ArrayList<Major>):Serializable
 
 data class Major(val majorName:String,val courses: ArrayList<Course>):Serializable
 
