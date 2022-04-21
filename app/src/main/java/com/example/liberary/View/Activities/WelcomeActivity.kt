@@ -4,14 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.liberary.Course
-import com.example.liberary.Major
-import com.example.liberary.R
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.liberary.*
+import com.example.liberary.Adapters.FacultiesAdapter
 import com.example.liberary.constants.Constants
 
 class WelcomeActivity : AppCompatActivity() {
-    private lateinit var businessEnglishBtn : Button
-    private lateinit var businessArabicBtn : Button
+    private lateinit var recyclerView:RecyclerView
+    private lateinit var adapter:FacultiesAdapter
     private lateinit var myIntent : Intent
     private lateinit var majors:ArrayList<Major>
 
@@ -25,11 +26,60 @@ class WelcomeActivity : AppCompatActivity() {
         setUpOnClickAction()
     }
     fun findView(){
-        businessEnglishBtn = findViewById(R.id.businessEnglishbtn)
-        businessArabicBtn = findViewById(R.id.businessArabicbtn)
+        recyclerView = findViewById(R.id.faculties_rv)
+        val faculties:ArrayList<Faculty> = arrayListOf(Faculty("Bussiness Arabic", arrayListOf(
+            Major("information system",
+                arrayListOf(Course("info 401","401","hello","four","https","my pre")))
+        )),Faculty("Bussiness Arabic", arrayListOf(
+            Major("information system",
+                arrayListOf(Course("info 401","401","hello","four","https","my pre")))
+        )),Faculty("Bussiness Arabic", arrayListOf(
+            Major("information system",
+                arrayListOf(Course("info 401","401","hello","four","https","my pre")))
+        )),Faculty("Bussiness Arabic", arrayListOf(
+            Major("information system",
+                arrayListOf(Course("info 401","401","hello","four","https","my pre")))
+        )),Faculty("Bussiness Arabic", arrayListOf(
+            Major("information system",
+                arrayListOf(Course("info 401","401","hello","four","https","my pre")))
+        )),Faculty("Bussiness Arabic", arrayListOf(
+            Major("information system",
+                arrayListOf(Course("info 401","401","hello","four","https","my pre")))
+        )),Faculty("Bussiness Arabic", arrayListOf(
+            Major("information system",
+                arrayListOf(Course("info 401","401","hello","four","https","my pre")))
+        )),Faculty("Bussiness Arabic", arrayListOf(
+            Major("information system",
+                arrayListOf(Course("info 401","401","hello","four","https","my pre")))
+        )),Faculty("Bussiness Arabic", arrayListOf(
+            Major("information system",
+                arrayListOf(Course("info 401","401","hello","four","https","my pre")))
+        )),Faculty("Bussiness Arabic", arrayListOf(
+            Major("information system",
+                arrayListOf(Course("info 401","401","hello","four","https","my pre")))
+        )),Faculty("Bussiness Arabic", arrayListOf(
+            Major("information system",
+                arrayListOf(Course("info 401","401","hello","four","https","my pre")))
+        )),Faculty("Bussiness Arabic", arrayListOf(
+            Major("information system",
+                arrayListOf(Course("info 401","401","hello","four","https","my pre")))
+        )),Faculty("Bussiness Arabic", arrayListOf(
+            Major("information system",
+                arrayListOf(Course("info 401","401","hello","four","https","my pre")))
+        )),Faculty("Bussiness Arabic", arrayListOf(
+            Major("information system",
+                arrayListOf(Course("info 401","401","hello","four","https","my pre")))
+        )),Faculty("Bussiness Arabic", arrayListOf(
+            Major("information system",
+                arrayListOf(Course("info 401","401","hello","four","https","my pre")))
+        )))
+        adapter = FacultiesAdapter(faculties){ }
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = GridLayoutManager(this,2)
+        adapter.notifyDataSetChanged()
     }
     fun setUpOnClickAction() {
-        businessEnglishBtn.setOnClickListener {
+        /*businessEnglishBtn.setOnClickListener {
             val INFORMATIONSYSTEMSCourses:ArrayList<Course> =  arrayListOf(Course("Principles of Mathematics ", "MATH 101", "hello from description", "1", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","pre"),
                 Course("Financial Mathematics","MATH 201","hello from my descroption","2","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"," 401"),
                 Course("Descriptive Statistics","STS 201","hello from dec","2","https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","401 , 406 ,407"),
@@ -118,11 +168,10 @@ class WelcomeActivity : AppCompatActivity() {
 
 
             startActivity(myIntent)
-        }
-        businessArabicBtn.setOnClickListener {
+            */
 
-            //startActivity(myIntent)
         }
 
-    }
+
+
 }
