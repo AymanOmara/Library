@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Must knowledge Base</string>
-    <string name="introduction">يجب أن تحتوي قاعدة المعارف التجارية على معلومات مهمة حول كلية إدارة الأعمال لجميع التخصصات والمستويات المختلفة. حيث يمكن للمستخدم البحث عن التخصص ، ثم الدورة لمعرفة كل تفاصيل الدورات مثل اسم الدورة والمتطلبات المسبقة والمستوى ومعرفة مرجع الدورة مما يجعله على دراية كافية بالمقرر.</string>
+    <string name="app_name">Must Knowledge Base</string>
+    <string name="introduction">تحتوي قاعدة المعارف MUST على جميع المعلومات حول جميع كليات الجامعة لجميع التخصصات والمستويات المختلفة. حيث يمكن للمستخدم اختيار الكلية ثم البحث عن التخصصات ثم الدورات لمعرفة كل تفاصيل الدورات مثل اسم الدورة والمتطلبات الأساسية والمستوى ومعرفة مرجع الدورة مما يجعله على دراية كافية بالمقرر .
+</string>
     <string name="businessEnglishBtn">Business English</string>
     <string name="BusinessArabic">Business Arabic</string>
 

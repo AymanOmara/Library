@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Must knowledge Base</string>
     <string name="introduction">
-        Must Business Knowledge Base contain important information about the college of business for all majors and different levels. Where the user can search for the major, then the course to know all details of the courses such as the name of the course, prerequisite, and level and know the reference of the course, which makes him familiar enough with the course.
+        MUST Knowledge Base contains all the information about all faculties of the university for all Majors and different levels. Where the user can choose the college and then search for the majors, then the courses to know all the details of the courses such as the name of the course, prerequisites, level and know the course reference, which makes him familiar enough with the course.
     </string>
     <string name="businessEnglishBtn">Business English</string>
     <string name="BusinessArabic">Business Arabic</string>
