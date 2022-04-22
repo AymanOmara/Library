@@ -136,7 +136,7 @@ class WelcomeActivity : AppCompatActivity() {
          ), Faculty(" Medicine",R.drawable.medicine, arrayListOf(
              Major("",
                  arrayListOf())
-         )), Faculty("Dentistry",R.drawable.dentistry, arrayListOf(
+         )), Faculty("Dentistry",R.drawable.dentisry, arrayListOf(
              Major("",
                  arrayListOf())
          )), Faculty("Pharmacy",R.drawable.pharmacy, arrayListOf(
