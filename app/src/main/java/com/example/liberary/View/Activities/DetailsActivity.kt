@@ -29,6 +29,7 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var favorite: Button
     private lateinit var recentCourse: Course
     private lateinit var refrences: TextView
+    private lateinit var level:TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,6 +79,7 @@ class DetailsActivity : AppCompatActivity() {
         courseIntroduction = findViewById(R.id.introductionValue)
         favorite = findViewById(R.id.addToFavorite)
         refrences = findViewById(R.id.refrences)
+        level = findViewById(R.id.levelvalue)
     }
 
     private fun bindDataToView() {
@@ -86,6 +88,7 @@ class DetailsActivity : AppCompatActivity() {
         courseIntroduction.text = course.courseDescription
         coursePrerequest.text = course.preRequest
         refrences.text = course.refreces
+        level.text = course.level
     }
 
     private fun addCourse(course: Course) {
