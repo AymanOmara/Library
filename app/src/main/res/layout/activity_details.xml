@@ -90,9 +90,10 @@
 
     <TextView
         android:id="@+id/prerequest"
-        android:layout_width="260dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/courseDeatilsPrerequestLabel"
@@ -164,7 +165,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginBottom="4dp"
-
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:srcCompat="@drawable/favrite_icon"
