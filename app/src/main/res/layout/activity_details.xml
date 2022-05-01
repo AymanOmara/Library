@@ -162,7 +162,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginBottom="4dp"
-        android:background="@color/imagebtnbg"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:srcCompat="@drawable/favrite_icon"
