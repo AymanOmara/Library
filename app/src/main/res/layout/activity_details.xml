@@ -84,12 +84,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
-        android:text="@string/prerequest"
+        android:text="@string/Prerequisite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/blankLineTwo" />
 
     <TextView
-        android:id="@+id/prerequest"
+        android:id="@+id/prerequisite"
         android:layout_width="260dp"
         android:layout_height="23dp"
         android:layout_marginEnd="10dp"
@@ -105,7 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
-        android:text="@string/refrences"
+        android:text="@string/References"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blankLineThree" />
 
@@ -125,7 +125,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/levelLabel"
         app:layout_constraintStart_toStartOf="@+id/courseDeatilsPrerequestLabel"
-        app:layout_constraintTop_toBottomOf="@+id/prerequest" />
+        app:layout_constraintTop_toBottomOf="@+id/prerequisite" />
 
     <TextView
         android:id="@+id/levelvalue"
@@ -133,8 +133,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/prerequest"
-        app:layout_constraintTop_toBottomOf="@+id/prerequest" />
+        app:layout_constraintStart_toStartOf="@+id/prerequisite"
+        app:layout_constraintTop_toBottomOf="@+id/prerequisite" />
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -150,7 +150,7 @@
         android:layout_height="49dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="10dp"
-        android:text="@string/refrences"
+        android:text="@string/References"
         android:textAllCaps="false"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView"

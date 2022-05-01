@@ -9,7 +9,7 @@
 
     <string name="courseDetailsName">اسم المادة:</string>
     <string name="courseID">رمز المادة</string>
-    <string name="prerequest">المواد المعتمدة</string>
+    <string name="Prerequisite">المواد المعتمدة</string>
     <string name="courseIntroduction">نبذه</string>
 
 
@@ -20,7 +20,7 @@
     <string name="logout">تسجيل خروج</string>
     <string name="open">فتح</string>
     <string name="close">غلق</string>
-    <string name="refrences">المراجع</string>
+    <string name="References">المراجع</string>
     <string name="Done">تم</string>
     <string name="Error">خطأ</string>
     <string name="isBefore">تم إضافة هذه المادة مسبقا</string>

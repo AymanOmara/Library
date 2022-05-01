@@ -77,7 +77,7 @@ class DetailsActivity : AppCompatActivity() {
     private fun findViewByid() {
         courseName = findViewById(R.id.courseDetailsNameValue)
         courseID = findViewById(R.id.courseDetailsIDValue)
-        coursePrerequest = findViewById(R.id.prerequest)
+        coursePrerequest = findViewById(R.id.prerequisite)
         courseIntroduction = findViewById(R.id.introductionValue)
         favorite = findViewById(R.id.addToFavorite)
         refrences = findViewById(R.id.refrncebtn)
