@@ -74,7 +74,7 @@
         android:layout_marginTop="11dp"
         android:text="TextView"
         android:textColor="#1074E5"
-        android:textSize="10sp"
+        android:textSize="11sp"
         app:layout_constraintStart_toStartOf="@+id/courseDetailsNameValue"
         app:layout_constraintTop_toBottomOf="@+id/courseDetailsNameValue" />
 
@@ -88,17 +88,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/blankLineTwo" />
 
-    <TextView
-        android:id="@+id/prerequisite"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:text="TextView"
-        android:layout_marginStart="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/courseDeatilsPrerequestLabel"
-        app:layout_constraintTop_toTopOf="@+id/courseDeatilsPrerequestLabel" />
-
 
     <TextView
         android:id="@+id/textView"
@@ -111,31 +100,39 @@
         app:layout_constraintTop_toBottomOf="@+id/blankLineThree" />
 
     <LinearLayout
-        android:layout_marginTop="10dp"
         android:id="@+id/blankLineThree"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="32dp"
         android:background="#EFEFEF"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/levellabel"
-        tools:layout_editor_absoluteX="3dp" />
+        app:layout_constraintTop_toBottomOf="@+id/courseDeatilsPrerequestLabel"
+        tools:layout_editor_absoluteX="0dp" />
+
     <TextView
+        android:textColor="#1074E5"
+        android:textSize="11sp"
         android:id="@+id/levellabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="7dp"
+
+
         android:text="@string/levelLabel"
-        app:layout_constraintStart_toStartOf="@+id/courseDeatilsPrerequestLabel"
-        app:layout_constraintTop_toBottomOf="@+id/prerequisite" />
+        app:layout_constraintStart_toStartOf="@+id/courseDetailsIDValue"
+        app:layout_constraintTop_toBottomOf="@+id/courseDetailsIDValue" />
 
     <TextView
         android:id="@+id/levelvalue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="12dp"
+        android:textColor="#1074E5"
+        android:textSize="11sp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/prerequisite"
-        app:layout_constraintTop_toBottomOf="@+id/prerequisite" />
+        app:layout_constraintStart_toEndOf="@+id/levellabel"
+        app:layout_constraintTop_toTopOf="@+id/levellabel" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -170,6 +167,20 @@
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:srcCompat="@drawable/favrite_icon"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:id="@+id/prerequisites_RV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/courseDeatilsPrerequestLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/courseDeatilsPrerequestLabel"
+        app:layout_constraintTop_toTopOf="@+id/courseDeatilsPrerequestLabel"
+        app:layout_constraintVertical_bias="0.458" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

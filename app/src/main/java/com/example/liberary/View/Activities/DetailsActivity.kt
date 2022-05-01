@@ -11,7 +11,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.liberary.Adapters.PrerequisiteAdapter
 import com.example.liberary.Course
 import com.example.liberary.LocalModel.LocalModel
 import com.example.liberary.R
@@ -25,19 +29,30 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var course: Course
     private lateinit var courseName: TextView
     private lateinit var courseID: TextView
-    private lateinit var coursePrerequest: TextView
     private lateinit var courseIntroduction: TextView
     private lateinit var favorite: ImageButton
     private lateinit var recentCourse: Course
     private lateinit var refrences: Button
     private lateinit var level:TextView
-
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: PrerequisiteAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
+
         findViewByid()
         course = intent.getSerializableExtra(Constants.details) as Course
+        //val aray =
+        adapter = PrerequisiteAdapter(course.preRequest.split(","))
+        recyclerView.adapter = adapter
+        val layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = layoutManager
+
+        adapter.notifyDataSetChanged()
+
+
         bindDataToView()
 
         refrences.setOnClickListener {
@@ -77,18 +92,20 @@ class DetailsActivity : AppCompatActivity() {
     private fun findViewByid() {
         courseName = findViewById(R.id.courseDetailsNameValue)
         courseID = findViewById(R.id.courseDetailsIDValue)
-        coursePrerequest = findViewById(R.id.prerequisite)
+        //coursePrerequest = findViewById(R.id.prerequisite)
         courseIntroduction = findViewById(R.id.introductionValue)
         favorite = findViewById(R.id.addToFavorite)
         refrences = findViewById(R.id.refrncebtn)
         level = findViewById(R.id.levelvalue)
+        recyclerView = findViewById(R.id.prerequisites_RV)
+
     }
 
     private fun bindDataToView() {
         courseName.text = course.courseName
         courseID.text = course.courseCode
         courseIntroduction.text = course.courseDescription
-        coursePrerequest.text = course.preRequest
+        //coursePrerequest.text = course.preRequest
         level.text = course.level
     }
 
