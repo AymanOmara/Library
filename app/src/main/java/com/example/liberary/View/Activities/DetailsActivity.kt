@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.webkit.URLUtil
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -26,9 +27,9 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var courseID: TextView
     private lateinit var coursePrerequest: TextView
     private lateinit var courseIntroduction: TextView
-    private lateinit var favorite: Button
+    private lateinit var favorite: ImageButton
     private lateinit var recentCourse: Course
-    private lateinit var refrences: TextView
+    private lateinit var refrences: Button
     private lateinit var level:TextView
 
 
@@ -41,7 +42,8 @@ class DetailsActivity : AppCompatActivity() {
 
         refrences.setOnClickListener {
 
-            val refrence = refrences.text.toString()
+            val refrence = course.refreces
+
 
             if (URLUtil.isValidUrl(refrence)) {
                 val pdfIntent = Intent(this@DetailsActivity,PDFActivity::class.java)
@@ -78,7 +80,7 @@ class DetailsActivity : AppCompatActivity() {
         coursePrerequest = findViewById(R.id.prerequest)
         courseIntroduction = findViewById(R.id.introductionValue)
         favorite = findViewById(R.id.addToFavorite)
-        refrences = findViewById(R.id.refrences)
+        refrences = findViewById(R.id.refrncebtn)
         level = findViewById(R.id.levelvalue)
     }
 
@@ -87,7 +89,6 @@ class DetailsActivity : AppCompatActivity() {
         courseID.text = course.courseCode
         courseIntroduction.text = course.courseDescription
         coursePrerequest.text = course.preRequest
-        refrences.text = course.refreces
         level.text = course.level
     }
 

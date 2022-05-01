@@ -6,185 +6,169 @@
     android:layout_height="match_parent"
     tools:context=".View.Activities.DetailsActivity">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:layout_marginTop="22dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TextView
+            android:id="@+id/introductionValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="TextView"
+            android:textDirection="locale"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/courseIntroduction"
+            app:layout_constraintTop_toBottomOf="@+id/refrences" />
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/blankLineTwo"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EFEFEF"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        tools:layout_editor_absoluteX="3dp" />
+
+    <TextView
+        android:id="@+id/courseDetailsNameValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#7FB5FF"
+        android:layout_marginEnd="10dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="90dp"
+        android:layout_width="107dp"
+        android:layout_height="92dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/must_logo_web_min" />
 
-    <ScrollView
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:fillViewport="true"
-        android:id="@+id/scrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/addToFavorite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:ignore="SpeakableTextPresentCheck">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/courseDetailsNameLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="40dp"
-                android:text="@string/courseDetailsName"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/courseDetailsNameValue"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="10dp"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/courseDetailsNameLabel"
-                app:layout_constraintTop_toTopOf="@+id/courseDetailsNameLabel" />
-
-            <TextView
-                android:id="@+id/courseDeatilsidLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/courseID"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/courseDetailsNameValue" />
-
-            <TextView
-                android:id="@+id/courseDetailsIDValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintBottom_toBottomOf="@+id/courseDeatilsidLabel"
-                app:layout_constraintStart_toStartOf="@+id/courseDetailsNameValue"
-                app:layout_constraintTop_toTopOf="@+id/courseDeatilsidLabel" />
-
-            <TextView
-                android:id="@+id/courseDeatilsPrerequestLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/prerequest"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/courseDeatilsidLabel" />
-
-            <TextView
-                android:id="@+id/prerequest"
-                android:layout_width="260dp"
-                android:layout_height="23dp"
-                android:layout_marginEnd="10dp"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/courseDetailsIDValue"
-                app:layout_constraintTop_toTopOf="@+id/courseDeatilsPrerequestLabel" />
-
-            <TextView
-                android:id="@+id/courseIntroduction"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
-                android:text="@string/courseIntroduction"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/refrences" />
-
-
-            <androidx.cardview.widget.CardView
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
-                app:cardMaxElevation="10dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/courseIntroduction"
-                app:layout_constraintTop_toBottomOf="@+id/refrences">
-
-                <TextView
-                    android:id="@+id/introductionValue"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="TextView"
-                    android:textDirection="locale"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/courseIntroduction"
-                    app:layout_constraintTop_toBottomOf="@+id/refrences" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/refrences"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/levellabel" />
-
-            <TextView
-                android:id="@+id/refrences"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/prerequest"
-                app:layout_constraintTop_toTopOf="@+id/textView" />
-
-            <TextView
-                android:id="@+id/levellabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/levelLabel"
-                app:layout_constraintStart_toStartOf="@+id/courseDeatilsPrerequestLabel"
-                app:layout_constraintTop_toBottomOf="@+id/prerequest" />
-
-            <TextView
-                android:id="@+id/levelvalue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/prerequest"
-                app:layout_constraintTop_toBottomOf="@+id/prerequest" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
-    <Button
-        android:id="@+id/addToFavorite"
+    <TextView
+        android:id="@+id/courseDetailsIDValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:text="@string/addToFavorite"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="11dp"
+        android:text="TextView"
+        android:textColor="#7FB5FF"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/courseDetailsNameValue"
+        app:layout_constraintTop_toBottomOf="@+id/courseDetailsNameValue" />
+
+    <TextView
+        android:id="@+id/courseDeatilsPrerequestLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/prerequest"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/blankLineTwo" />
+
+    <TextView
+        android:id="@+id/prerequest"
+        android:layout_width="260dp"
+        android:layout_height="23dp"
+        android:layout_marginEnd="10dp"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/courseDeatilsPrerequestLabel"
+        app:layout_constraintTop_toTopOf="@+id/courseDeatilsPrerequestLabel" />
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/refrences"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/blankLineThree" />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/blankLineThree"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EFEFEF"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/levellabel"
+        tools:layout_editor_absoluteX="3dp" />
+    <TextView
+        android:id="@+id/levellabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/levelLabel"
+        app:layout_constraintStart_toStartOf="@+id/courseDeatilsPrerequestLabel"
+        app:layout_constraintTop_toBottomOf="@+id/prerequest" />
+
+    <TextView
+        android:id="@+id/levelvalue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/prerequest"
+        app:layout_constraintTop_toBottomOf="@+id/prerequest" />
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EFEFEF"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/refrncebtn"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/refrences"
+        android:textAllCaps="false"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
+
+    <ImageButton
+        android:background="@color/white"
+        android:id="@+id/addToFavorite"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:srcCompat="@drawable/favrite_icon"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
