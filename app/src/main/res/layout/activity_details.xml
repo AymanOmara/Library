@@ -160,11 +160,11 @@
         app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <ImageButton
-        android:background="@color/white"
         android:id="@+id/addToFavorite"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="4dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:srcCompat="@drawable/favrite_icon"
