@@ -36,10 +36,14 @@ import java.util.*
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var courses: ArrayList<Course>
+    // the bundle for that we pass the array on to the home fragment
     private val bundle = Bundle()
+//  tie DrawerLayout and  ActionBar
     private lateinit var toggle :ActionBarDrawerToggle
     private lateinit var viewModel:ViewModel
+    // access the switch view to change it state according to the current appearance
     private lateinit var action: View
+    // side menu container
     private lateinit var drawerLayout:DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,9 +52,12 @@ class HomeActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         viewModel = ViewModelProvider(this).get(ViewModel::class.java)
         viewModel.initContext(this)
+        // side menu
+        val navigationView:NavigationView = findViewById(R.id.navigationView)
+        // get the menu items from navigation
         val menu: Menu = navigationView.menu
         drawerLayout = findViewById(R.id.navigationDrawer)
-        val navigationView:NavigationView = findViewById(R.id.navigationView)
+
 
         toggle = ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close)
         drawerLayout.addDrawerListener(toggle)
@@ -110,13 +117,10 @@ class HomeActivity : AppCompatActivity() {
 
         courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>
 
-
+        // replace fragment on the screen according to the navigation btn id
         bottomNavigation.setOnClickMenuListener { meow ->
             when (meow.id){
                 0 -> {
-                    val homeFragment = HomeFragment()
-                    //courses = intent.getSerializableExtra(Constants.courses) as ArrayList<Course>
-
                     replaceFragment(constructFragmentWithCourses())
                 }
                 1 -> {
@@ -146,7 +150,7 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-
+    // call back method that return the selected item from menu
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(toggle.onOptionsItemSelected(item)){
             return  true
