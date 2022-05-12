@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Must knowledge Base</string>
+    <string name="app_name">MUST knowledge Base</string>
     <string name="introduction">
         MUST Knowledge Base contains all the information about all faculties of the university for all Majors and different levels. Where the user can choose the college and then search for the majors, then the courses to know all the details of the courses such as the name of the course, prerequisites, level and know the course reference, which makes him familiar enough with the course.
     </string>
