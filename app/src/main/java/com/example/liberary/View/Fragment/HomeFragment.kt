@@ -32,6 +32,7 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         searchBar = view.findViewById(R.id.searchView)
+        searchBar.queryHint = "Info 404"
         searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
@@ -57,7 +58,7 @@ class HomeFragment : Fragment() {
     private fun filter(text:String){
         filterdCourses.clear()
         courses.map { i ->
-            if (i.courseCode.lowercase().contains(text.lowercase())) {
+            if (i.courseCode.lowercase().contains(text.lowercase()) || i.courseCode.lowercase().replace("\\s".toRegex(),"").contains(text.lowercase().replace("\\s".toRegex(),""))) {
                 filterdCourses.add(i)
             }
         }
